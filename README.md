@@ -64,7 +64,7 @@ yran dev
 ### 工具脚本
 
 ```bash
-# 生成ts请求文件
+# 生成ts请求文件 记得修改根目录下apigen.js的swaggerUrl变量
 yarn api
 
 # 对typescript语法进行类型检查
