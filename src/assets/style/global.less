@@ -1,3 +1,16 @@
+@font-face {
+  font-family: 'shs';
+  src: url('https://bdcsrv.isart.me/SourceHanSansCN-Medium.otf');
+  font-weight: normal;
+  font-style: normal;
+}
+@font-face {
+  font-family: 'ysbth';
+  src: url('https://bdcsrv.isart.me/YouSheBiaoTiHei.ttf');
+  font-weight: normal;
+  font-style: normal;
+}
+
 * {
   box-sizing: border-box;
 }
@@ -91,4 +104,478 @@ body {
       background-color: rgb(var(--green-6));
     }
   }
+}
+
+/* 超出文字... */
+.display-txt {
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  word-break: break-all;
+}
+
+.cursor-pointer {
+  cursor: pointer;
+}
+
+/* 布局相关 */
+.fx {
+  display: flex;
+}
+
+.fx-column {
+  display: flex;
+  flex-direction: column;
+}
+
+.fx-between {
+  display: flex;
+  justify-content: space-between;
+}
+
+.fx-start {
+  display: flex;
+  justify-content: flex-start;
+}
+
+.fx-center {
+  display: flex;
+  justify-content: center;
+}
+
+.fx-end {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.fx-around {
+  display: flex;
+  justify-content: space-around;
+}
+
+.fx-items-start {
+  display: flex;
+  align-items: flex-start;
+}
+
+.fx-items-center {
+  display: flex;
+  align-items: center;
+}
+
+.fx-items-end {
+  display: flex;
+  align-items: flex-end;
+}
+
+.fx-warp {
+  flex-wrap: wrap;
+}
+
+/* 倒圆角 */
+.radius-4 {
+  border-radius: 0.2rem;
+}
+
+.radius-50 {
+  border-radius: 50%;
+}
+
+/* 字体大小与文字对齐 */
+.size-12 {
+  font-size: 0.6rem;
+}
+
+.size-14 {
+  font-size: 0.7rem;
+}
+
+.size-16 {
+  font-size: 0.8rem;
+}
+
+.size-18 {
+  font-size: 0.9rem;
+}
+
+.size-20 {
+  font-size: 1rem;
+}
+
+.size-22 {
+  font-size: 1.1rem;
+}
+
+.size-24 {
+  font-size: 1.2rem;
+}
+
+.size-26 {
+  font-size: 1.3rem;
+}
+
+.size-28 {
+  font-size: 1.4rem;
+}
+
+.align-l {
+  text-align: left;
+}
+
+.align-r {
+  text-align: right;
+}
+
+.align-c {
+  text-align: center;
+}
+
+.weight-400 {
+  font-weight: 400 !important;
+}
+
+.weight-500 {
+  font-weight: 500 !important;
+}
+
+.weight-600 {
+  font-weight: 600 !important;
+}
+
+.weight-700 {
+  font-weight: 700 !important;
+}
+
+/* 内外边距 */
+.p-0 {
+  padding: 0;
+}
+
+.p-5 {
+  padding: 0.25rem;
+}
+
+.p-10 {
+  padding: 0.5rem;
+}
+
+.p-15 {
+  padding: 0.75rem;
+}
+
+.p-20 {
+  padding: 1rem;
+}
+
+.p-25 {
+  padding: 1.25rem;
+}
+
+.p-30 {
+  padding: 1.5rem;
+}
+
+.p-t-0 {
+  padding-top: 0;
+}
+
+.p-t-5 {
+  padding-top: 0.25rem;
+}
+
+.p-t-10 {
+  padding-top: 0.5rem;
+}
+
+.p-t-15 {
+  padding-top: 0.75rem;
+}
+
+.p-t-20 {
+  padding-top: 1rem;
+}
+
+.p-t-25 {
+  padding-top: 1.25rem;
+}
+
+.p-t-30 {
+  padding-top: 1.5rem;
+}
+
+.p-b-0 {
+  padding-bottom: 0;
+}
+
+.p-b-5 {
+  padding-bottom: 0.25rem;
+}
+
+.p-b-10 {
+  padding-bottom: 0.5rem;
+}
+
+.p-b-15 {
+  padding-bottom: 0.75rem;
+}
+
+.p-b-20 {
+  padding-bottom: 1rem;
+}
+
+.p-b-25 {
+  padding-bottom: 1.25rem;
+}
+
+.p-b-30 {
+  padding-bottom: 1.5rem;
+}
+
+.p-l-0 {
+  padding-left: 0;
+}
+
+.p-l-5 {
+  padding-left: 0.25rem;
+}
+
+.p-l-10 {
+  padding-left: 0.5rem;
+}
+
+.p-l-15 {
+  padding-left: 0.75rem;
+}
+
+.p-l-20 {
+  padding-left: 1rem;
+}
+
+.p-l-25 {
+  padding-left: 1.25rem;
+}
+
+.p-l-30 {
+  padding-left: 1.5rem;
+}
+
+.p-r-0 {
+  padding-right: 0;
+}
+
+.p-r-5 {
+  padding-right: 0.25rem;
+}
+
+.p-r-10 {
+  padding-right: 0.5rem;
+}
+
+.p-r-15 {
+  padding-right: 0.75rem;
+}
+
+.p-r-20 {
+  padding-right: 1rem;
+}
+
+.p-r-25 {
+  padding-right: 1.25rem;
+}
+
+.p-r-30 {
+  padding-right: 1.5rem;
+}
+
+.m-0 {
+  margin: 0;
+}
+
+.m-5 {
+  margin: 0.25rem;
+}
+
+.m-10 {
+  margin: 0.5rem;
+}
+
+.m-15 {
+  margin: 0.75rem;
+}
+
+.m-20 {
+  margin: 1rem;
+}
+
+.m-25 {
+  margin: 1.25rem;
+}
+
+.m-30 {
+  margin: 1.5rem;
+}
+
+.m-t-0 {
+  margin-top: 0;
+}
+
+.m-t-5 {
+  margin-top: 0.25rem;
+}
+
+.m-t-10 {
+  margin-top: 0.5rem;
+}
+
+.m-t-15 {
+  margin-top: 0.75rem;
+}
+
+.m-t-20 {
+  margin-top: 1rem;
+}
+
+.m-t-25 {
+  margin-top: 1.25rem;
+}
+
+.m-t-30 {
+  margin-top: 1.5rem;
+}
+
+.m-b-0 {
+  margin-bottom: 0;
+}
+
+.m-b-5 {
+  margin-bottom: 0.25rem;
+}
+
+.m-b-10 {
+  margin-bottom: 0.5rem;
+}
+
+.m-b-15 {
+  margin-bottom: 0.75rem;
+}
+
+.m-b-20 {
+  margin-bottom: 1rem;
+}
+
+.m-b-25 {
+  margin-bottom: 1.25rem;
+}
+
+.m-b-30 {
+  margin-bottom: 1.5rem;
+}
+
+.m-l-0 {
+  margin-left: 0;
+}
+
+.m-l-5 {
+  margin-left: 0.25rem;
+}
+
+.m-l-10 {
+  margin-left: 0.5rem;
+}
+
+.m-l-15 {
+  margin-left: 0.75rem;
+}
+
+.m-l-20 {
+  margin-left: 1rem;
+}
+
+.m-l-25 {
+  margin-left: 1.25rem;
+}
+
+.m-l-30 {
+  margin-left: 1.5rem;
+}
+
+.m-r-0 {
+  margin-right: 0;
+}
+
+.m-r-5 {
+  margin-right: 0.25rem;
+}
+
+.m-r-10 {
+  margin-right: 0.5rem;
+}
+
+.m-r-15 {
+  margin-right: 0.75rem;
+}
+
+.m-r-20 {
+  margin-right: 1rem;
+}
+
+.m-r-25 {
+  margin-right: 1.25rem;
+}
+
+.m-r-30 {
+  margin-right: 1.5rem;
+}
+
+.po_re {
+  position: relative;
+}
+
+.po_ab {
+  position: absolute;
+}
+
+.po_fi {
+  position: fixed;
+}
+
+.hide {
+  opacity: 0;
+}
+
+.nav-title {
+  font-size: 0.8rem;
+  font-weight: bolder;
+}
+
+.f-px-12 {
+  font-size: 12px;
+}
+
+.f-px-14 {
+  font-size: 14px;
+}
+
+.f-px-16 {
+  font-size: 16px;
+}
+
+.f-px-18 {
+  font-size: 18px;
+}
+
+.f-px-20 {
+  font-size: 20px;
+}
+
+.f-px-22 {
+  font-size: 22px;
+}
+
+.f-px-24 {
+  font-size: 24px;
+}
+
+.f-px-26 {
+  font-size: 26px;
 }
