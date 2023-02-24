@@ -69,7 +69,8 @@
   import { useUserStore } from '@/store';
   import useLoading from '@/hooks/loading';
   import type { LoginData } from '@/api/user';
-
+  // import { Md5 } from 'ts-md5'; todo 使用MD5
+  // const md5 = new Md5(); todo 使用MD5
   const router = useRouter();
   const { t } = useI18n();
   const errorMessage = ref('');
@@ -80,10 +81,12 @@
     rememberPassword: true,
     username: 'admin', // 演示默认值
     password: 'admin', // demo default value
+    // md5Password: '',  todo 使用MD5
   });
   const userInfo = reactive({
     username: loginConfig.value.username,
     password: loginConfig.value.password,
+    // md5Password: loginConfig.value.md5Password, todo 使用MD5
   });
 
   const handleSubmit = async ({
@@ -97,6 +100,10 @@
     if (!errors) {
       setLoading(true);
       try {
+        // const data = {
+        //   username: values.username,
+        //   md5Password: md5.appendStr(values.md5Password).end() , todo 使用MD5时 把107行的values换成data即可
+        // }
         await userStore.login(values as LoginData);
         const { redirect, ...othersQuery } = router.currentRoute.value.query;
         router.push({
