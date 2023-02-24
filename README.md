@@ -119,7 +119,7 @@ setupMock({
 
 ### 写在最后
 
-##### 有什么建议请联系作者 songyueming@isart.com
+##### 有什么好的建议请联系作者 songyueming@yisa.art
 
 ##### 好用的话建议点个star哦~
 
