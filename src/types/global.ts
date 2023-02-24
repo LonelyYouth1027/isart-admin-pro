@@ -29,6 +29,18 @@ export interface Pagination {
   total?: number;
 }
 
+export interface GlobalPagination {
+  page: number;
+  size: number;
+  total?: number;
+}
+
+export interface GlobalResponse {
+  code: number;
+  message: string;
+  result: any;
+}
+
 export type TimeRanger = [string, string];
 
 export interface GeneralChart {

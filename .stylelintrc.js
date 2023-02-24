@@ -4,7 +4,9 @@ module.exports = {
     'stylelint-config-rational-order',
     'stylelint-config-prettier',
     'stylelint-config-recommended-vue',
+    'stylelint-config-standard-vue',
   ],
+  customSyntax: 'postcss-html',
   defaultSeverity: 'warning',
   plugins: ['stylelint-order'],
   rules: {

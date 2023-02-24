@@ -2,15 +2,16 @@ import { defineStore } from 'pinia';
 import {
   login as userLogin,
   logout as userLogout,
-  getUserInfo,
+  getUserInfo, // todo 对接接口需要删除此行
   LoginData,
 } from '@/api/user';
-import { setToken, clearToken } from '@/utils/auth';
+import { setToken, clearToken } from '@/utils/auth'; // todo  setUserInfo getUserInfo在这里引入
 import { removeRouteListener } from '@/utils/route-listener';
 import { UserState } from './types';
 import useAppStore from '../app';
 
 const useUserStore = defineStore('user', {
+  // todo 在这里定义接口返回的类型
   state: (): UserState => ({
     name: undefined,
     avatar: undefined,
@@ -55,15 +56,19 @@ const useUserStore = defineStore('user', {
 
     // Get user's information
     async info() {
+      // mock模拟获取用户信息
       const res = await getUserInfo();
-
       this.setInfo(res.data);
+      // const res = getUserInfo(); todo 对接接口要把这行注释打开 需要引入 /utils/auth.ts文件下的getUserInfo
+      // this.setInfo(res); todo 对接接口要把这行注释打开
     },
 
     // Login
     async login(loginForm: LoginData) {
       try {
-        const res = await userLogin(loginForm);
+        const res: any = await userLogin(loginForm);
+        // setUserInfo(res?.result?.userInfo); todo 对接接口要把这行注释打开
+        // this.setInfo(res?.result?.userInfo); todo 对接接口要把这行注释打开
         setToken(res.data.token);
       } catch (err) {
         clearToken();
@@ -81,6 +86,7 @@ const useUserStore = defineStore('user', {
     async logout() {
       try {
         await userLogout();
+        // clearToken(); todo 退出登录需要打开此行并注释上一行，因为可能没有登录接口
       } finally {
         this.logoutCallBack();
       }
