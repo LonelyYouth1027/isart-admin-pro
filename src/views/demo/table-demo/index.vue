@@ -2,58 +2,10 @@
   <div class="container">
     <Breadcrumb :items="['menu.demo', 'menu.list']" />
     <a-card class="general-card" :title="$t('menu.list')">
-      <a-row>
-        <a-col :flex="1">
-          <a-form
-            ref="formSearchRef"
-            :model="formSearch"
-            :label-col-props="{ span: 6 }"
-            :wrapper-col-props="{ span: 18 }"
-            label-align="left"
-            @submit="handleSearch"
-          >
-            <a-row :gutter="16">
-              <a-col :span="8">
-                <a-form-item field="name_Like" label="项目名称">
-                  <a-input
-                    v-model="formSearch.name_Like"
-                    placeholder="请输入项目名称"
-                  />
-                </a-form-item>
-              </a-col>
-              <a-col :span="8">
-                <a-form-item field="status" label="项目状态">
-                  <a-select
-                    v-model="formSearch.status"
-                    placeholder="请选择项目状态"
-                  >
-                    <a-option value="0">无效</a-option>
-                    <a-option value="1">有效</a-option>
-                  </a-select>
-                </a-form-item>
-              </a-col>
-              <a-col :span="8">
-                <a-form-item>
-                  <a-space>
-                    <a-button html-type="submit" type="primary">
-                      <template #icon>
-                        <icon-search />
-                      </template>
-                      <template #default>查询</template>
-                    </a-button>
-                    <a-button @click="handleReset">
-                      <template #icon>
-                        <icon-refresh />
-                      </template>
-                      <template #default>重置</template>
-                    </a-button>
-                  </a-space>
-                </a-form-item>
-              </a-col>
-            </a-row>
-          </a-form>
-        </a-col>
-      </a-row>
+      <search-form
+        :form-model="formSearch"
+        :form-items="formItems"
+      ></search-form>
       <a-divider style="margin-top: 0" />
       <a-row>
         <a-col :flex="1">
@@ -72,15 +24,11 @@
         :columns="columns"
         :data="data"
         :loading="loading"
-        z
         :pagination="pagination"
         style="margin-top: 20px"
         :bordered="true"
         @page-change="handlePage"
       >
-        <template #projectType="{ record }">
-          {{ record.projectType?.message }}
-        </template>
         <template #type="{ record }">
           <a-tag v-if="record.type === 0">不填</a-tag>
           <a-tag v-if="record.type === 1">填</a-tag>
@@ -105,15 +53,17 @@
               {{ record.status === '1' ? '禁用' : '启用' }}
             </a-button>
           </a-popconfirm>
-          <a-button type="text" size="small" @click="handleBudget(record)"
-            >预算</a-button
-          >
-          <a-button type="text" size="small" @click="handleModalTable(record)"
-            >预算记录</a-button
-          >
         </template>
       </a-table>
     </a-card>
+    <modal-form
+      :title="formModal.id ? '编辑' : '新建'"
+      :form-items="modalFormItems"
+      :form-model="formModal"
+      :modal-form-config="modalFormConfig"
+      @handle-reset="handleReset"
+    >
+    </modal-form>
   </div>
 </template>
 
@@ -121,16 +71,23 @@
   import { ref, reactive, onMounted } from 'vue';
   import { Pagination } from '@/types/global';
   import useLoading from '@/hooks/loading';
-  import { columns, form } from './config';
+  import SearchForm from '@/components/pro/search-form/index.vue';
+  import ModalForm from '@/components/pro/modal-form/index.vue';
+  import { ModalFormConfig } from '@/types/proComponents';
+  import {
+    columns,
+    formSearch,
+    formModal,
+    data,
+    formItems,
+    modalFormItems,
+  } from './config';
 
   const { loading } = useLoading(false); // 表格loading
-  const formSearchRef = ref(); // 搜索表单实例
-  // 搜索表单
-  const formSearch = reactive({
-    name_Like: '',
-    status: '',
+  const modalFormConfig = reactive<ModalFormConfig>({
+    visible: false,
+    footer: false,
   });
-  const data = reactive([]); // 表格数据
   // 分页控件
   const basePagination: Pagination = {
     current: 1,
@@ -160,43 +117,29 @@
    */
   const handlePage = (page: number) => {
     pagination.current = page;
-    handleGetData(formSearch);
-  };
-
-  /**
-   * 搜索
-   * @param values 搜索参数 {name_Like,status}
-   */
-  const handleSearch = async ({ values }: any) => {
-    pagination.current = 1;
-    await handleGetData(values);
-  };
-
-  const handleReset = () => {
-    formSearchRef.value.resetFields();
     handleGetData();
   };
 
-  const visible = ref(false); // modal控件
   // 打开modal框
   const handleClick = () => {
-    visible.value = true;
+    modalFormConfig.visible = true;
   };
 
   // 编辑表单
   const handleEdit = (row: any) => {
-    form.name = row.name;
-    form.type = row.type;
-    form.leaderId = row.leaderId;
-    form.projectType = row.projectType.code;
-    form.parentId = row.parentId || null;
-    form.id = row.id;
-    visible.value = true;
+    formModal.name = row.name;
+    formModal.type = row.type;
+    formModal.id = row.id;
+    modalFormConfig.visible = true;
   };
 
   // 禁用启用
   const handleSetStatus = async (row: any) => {
     console.log(row);
+  };
+
+  const handleReset = () => {
+    formModal.id = null;
   };
 
   onMounted(() => {

@@ -11,8 +11,7 @@ const columns: any = [
   },
   {
     title: '项目类型',
-    dataIndex: 'projectType',
-    slotName: 'projectType',
+    dataIndex: 'projectType.message',
     width: 120,
   },
   {
@@ -59,24 +58,85 @@ const columns: any = [
 ];
 
 // 表单控件
-const form = reactive({
+const formSearch = reactive({
+  name: '',
+  type: '',
+});
+
+const formModal = reactive({
   name: '',
   type: '',
   id: null,
-  parentId: null,
-  leaderId: '',
-  projectType: '',
-  name4: '',
-  name5: '',
-  name6: '',
-});
-// 表单验证规则
-const rules: any = reactive({
-  name: [{ required: true, message: '项目名称必填' }],
-  // parentId: [{ required: true, message: '上级项目必填' }],
-  leaderId: [{ required: true, message: '项目负责人必填' }],
-  projectType: [{ required: true, message: '项目类型必填' }],
-  type: [{ required: true, message: '备注必填' }],
 });
 
-export { columns, form, rules };
+const formItems: any = [
+  {
+    label: '项目名称',
+    field: 'name',
+    placeholder: '请输入项目名称',
+    type: 'input',
+    span: 8,
+  },
+  {
+    label: '备注',
+    field: 'type',
+    placeholder: '请选择',
+    type: 'select',
+    options: [
+      { value: 0, name: '不填' },
+      { value: 1, name: '填' },
+    ],
+    span: 8,
+  },
+  {
+    type: 'slot',
+    slotName: 'operate',
+    span: 8,
+  },
+];
+
+const modalFormItems: any = [
+  {
+    label: '项目名称',
+    field: 'name',
+    placeholder: '请输入项目名称',
+    type: 'input',
+    rules: [{ required: true, message: '必填' }],
+  },
+  {
+    label: '备注',
+    field: 'type',
+    placeholder: '请选择',
+    type: 'select',
+    options: [
+      { value: 0, name: '不填' },
+      { value: 1, name: '填' },
+    ],
+    rules: [{ required: true, message: '必填' }],
+  },
+  {
+    type: 'slot',
+    slotName: 'operate',
+  },
+];
+const data: any = [];
+
+for (let i = 0; i < 20; i += 1) {
+  const obj: any = {
+    id: i + 1,
+    name: `小明的测试项目${i}`,
+    projectType: {
+      message: '测试项目',
+    },
+    type: i % 2 === 0 ? 1 : 0,
+    leaderName: '小明童鞋',
+    budget: '100',
+    generalState: i % 2 === 0 ? 1 : 0,
+    status: i % 2 === 0 ? '1' : '0',
+    createdAt: '2023-2-28 11:27:11',
+  };
+
+  data.push(obj);
+}
+
+export { columns, formSearch, formModal, data, formItems, modalFormItems };
