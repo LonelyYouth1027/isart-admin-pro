@@ -57,12 +57,18 @@ const formItems: any = [
 
 ### API
 
-pro-form Props
+pro-form Props属性
 
-| 参数名       |描述| 类型       |
-|-----------|---|----------|
-| formModel |表单数据模型| any 任意类型 |
-| formItems |表单数据模型| any 任意类型 |
+| 参数名       | 描述     | 类型                          |
+|-----------|--------|-----------------------------|
+| formModel | 表单数据模型 | any 任意类型                    |
+| formItems | 表单项数组  | ProFormItem [ ] 数组 array    |
+| formConfig | 表单配置   | ProFormConfig { } 对象 object |
 
+pro-form Events事件
+
+| 参数名    | 描述         | 类型       |
+|--------------|------------|----------|
+| handleSubmit | 提交表单的方法    | function |                  |
 
 
