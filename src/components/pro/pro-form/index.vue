@@ -20,6 +20,7 @@
               :field="item.field"
               :label="item.label"
               :rules="item.rules"
+              :label-col-props="item.labelConfig"
             >
               <template v-if="item.type === 'input'">
                 <a-input
@@ -38,15 +39,26 @@
                 <a-select
                   v-model="formModel[item.field]"
                   :placeholder="item.placeholder"
+                  :options="item.options"
+                  :field-names="item.fieldNames"
                   allow-search
                 >
-                  <a-option
-                    v-for="it in item.options"
-                    :key="it.value"
-                    :value="it.value"
-                    >{{ it.name }}</a-option
-                  >
                 </a-select>
+              </template>
+              <template v-if="item.type === 'textArea'">
+                <a-textarea
+                  v-model="formModel[item.field]"
+                  :placeholder="item.placeholder"
+                  allow-clear
+                />
+              </template>
+              <template v-if="item.type === 'mention'">
+                <a-mention
+                  v-model="formModel[item.field]"
+                  :data="item.options"
+                  type="textarea"
+                  :placeholder="item.placeholder"
+                />
               </template>
               <template v-if="item.type === 'datePicker'">
                 <a-date-picker
@@ -60,7 +72,11 @@
                   v-model="formModel[item.field]"
                   value-format="YYYY-MM-DD"
                   :placeholder="item.placeholder"
+                  style="width: 100%"
                 />
+              </template>
+              <template v-if="item.type === 'textAreaEditor'">
+                <basic-editor v-model:value="formModel[item.field]" />
               </template>
               <template v-if="item.type === 'slot'">
                 <slot :name="item.slotName"></slot>
@@ -76,6 +92,7 @@
 <script setup lang="ts">
   import { ref, toRefs, watch } from 'vue';
   import { ProFormItem, ProFormConfig } from '@/types/proComponents';
+  import BasicEditor from '@/components/basic-editor/index.vue';
 
   const props = defineProps<{
     formModel: any;
@@ -93,6 +110,7 @@
     },
     {
       deep: true,
+      immediate: true,
     }
   );
   const handleSubmit = async ({ values, errors }: any) => {

@@ -9,7 +9,7 @@
     @cancel="handleReset"
   >
     <pro-form
-      ref="searchForm"
+      ref="modalForm"
       :form-config="modalFormConfig"
       :form-model="formModel"
       :form-items="formItems"
@@ -42,7 +42,7 @@
   const emits = defineEmits(['handleReset']);
   const { loading, setLoading } = useLoading();
   const { formModel, formItems, modalFormConfig, title } = toRefs(props);
-  const searchForm = ref();
+  const modalForm = ref();
   const handleSubmit = (values: any) => {
     console.log(111, values);
     setLoading(true);
@@ -53,7 +53,7 @@
   };
   const handleReset = () => {
     modalFormConfig.value.visible = false;
-    searchForm.value.$refs.formRef.resetFields();
+    modalForm.value.$refs.formRef.resetFields();
     emits('handleReset');
   };
 </script>

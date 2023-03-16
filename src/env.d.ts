@@ -9,3 +9,6 @@ declare module '*.vue' {
 interface ImportMetaEnv {
   readonly VITE_API_BASE_URL: string;
 }
+
+declare module '@wangeditor/editor';
+declare module 'js-md5';

@@ -87,6 +87,7 @@
   const modalFormConfig = reactive<ModalFormConfig>({
     visible: false,
     footer: false,
+    width: '1100px',
   });
   // 分页控件
   const basePagination: Pagination = {

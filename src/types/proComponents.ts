@@ -3,8 +3,11 @@ type ProFormType =
   | 'input'
   | 'password'
   | 'select'
+  | 'mention'
   | 'datePicker'
   | 'dateRangePicker'
+  | 'textArea'
+  | 'textAreaEditor'
   | 'slot';
 
 type Layout = 'horizontal' | 'vertical' | 'inline'; // 表单的布局方式，包括水平、垂直、多列
@@ -21,11 +24,14 @@ type Size = 'mini' | 'small' | 'medium' | 'large'; // 表单控件的尺寸
 export interface ProFormItem {
   field: string;
   type: ProFormType;
+  span?: number | string;
   label: string;
   rules?: any[];
   placeholder?: string | any[];
   options?: any[];
+  fieldNames?: any;
   slotName?: string;
+  labelConfig?: any;
 }
 
 // 表单的配置

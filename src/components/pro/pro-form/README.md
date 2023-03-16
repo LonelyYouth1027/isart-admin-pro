@@ -4,7 +4,7 @@
 
 ### 基本使用
 
-配置 formItems,formModel,formConfig(非必填) 即可使用 (具体可参考SearchForm组件和ModalForm组件)
+配置 formItems(必填),formModel(必填),formConfig(非必填) 即可使用 (具体可参考SearchForm组件和ModalForm组件)
 
 ```html
 <!-- /src/views/demo/table-demo/index.vue-->
