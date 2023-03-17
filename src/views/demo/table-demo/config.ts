@@ -160,6 +160,10 @@ const modalFormItems: any = [
     field: 'textAreaEditor',
     type: 'textAreaEditor',
     rules: [{ required: true, message: '必填' }],
+    span: 20,
+    labelConfig: {
+      span: 3,
+    },
   },
   {
     type: 'slot',

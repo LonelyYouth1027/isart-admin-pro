@@ -24,14 +24,16 @@ type Size = 'mini' | 'small' | 'medium' | 'large'; // 表单控件的尺寸
 export interface ProFormItem {
   field: string;
   type: ProFormType;
-  span?: number | string;
+  span?: number;
   label: string;
   rules?: any[];
-  placeholder?: string | any[];
+  placeholder?: any;
   options?: any[];
   fieldNames?: any;
   slotName?: string;
   labelConfig?: any;
+  wrapperConfig?: any;
+  offset?: number;
 }
 
 // 表单的配置

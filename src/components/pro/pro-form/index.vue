@@ -15,12 +15,18 @@
         @submit="handleSubmit"
       >
         <a-row :gutter="16">
-          <a-col v-for="item in formItems" :key="item.field" :span="item.span">
+          <a-col
+            v-for="item in formItems"
+            :key="item.field"
+            :span="item.span"
+            :offset="item.offset"
+          >
             <a-form-item
               :field="item.field"
               :label="item.label"
               :rules="item.rules"
               :label-col-props="item.labelConfig"
+              :wrapper-col-props="item.wrapperConfig"
             >
               <template v-if="item.type === 'input'">
                 <a-input
