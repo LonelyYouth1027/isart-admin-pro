@@ -47,6 +47,7 @@
     "mitt": "^3.0.0",
     "nprogress": "^0.2.0",
     "pinia": "^2.0.23",
+    "qiniu-js": "^3.4.1",
     "query-string": "^8.0.3",
     "sortablejs": "^1.15.0",
     "stylelint-config-standard-vue": "^1.0.0",

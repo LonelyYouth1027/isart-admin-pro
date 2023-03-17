@@ -53,6 +53,7 @@ const formItems: any = [
     span: 8,
   },
 ];
+// 具体详情请查看demo
 ```
 
 ### API

@@ -296,6 +296,14 @@
     "@babel/helper-plugin-utils" "^7.20.2"
     "@babel/plugin-syntax-typescript" "^7.20.0"
 
+"@babel/runtime-corejs2@^7.10.2":
+  version "7.21.0"
+  resolved "https://registry.npmmirror.com/@babel/runtime-corejs2/-/runtime-corejs2-7.21.0.tgz#79374a14846b38764077089707566066721bcc16"
+  integrity sha512-hVFDLYkuthnvQwWoOniPSq+RWyQTiimVdMXQJujoiSX8maFh/62+qRImGkRpeRflsVXXSMFS4HgNe3X9fuw5ww==
+  dependencies:
+    core-js "^2.6.12"
+    regenerator-runtime "^0.13.11"
+
 "@babel/runtime@^7.12.0":
   version "7.21.0"
   resolved "https://registry.npmmirror.com/@babel/runtime/-/runtime-7.21.0.tgz#5b55c9d394e5fcf304909a8b00c07dc217b56673"
@@ -2280,6 +2288,11 @@ copy-descriptor@^0.1.0:
   version "0.1.1"
   resolved "https://registry.yarnpkg.com/copy-descriptor/-/copy-descriptor-0.1.1.tgz#676f6eb3c39997c2ee1ac3a924fd6124748f578d"
   integrity sha512-XgZ0pFcakEUlbwQEVNg3+QAis1FyTL3Qel9FYy8pSkQqoG3PNoT0bOCQtOXcOkur21r2Eq2kI+IE+gsmAEVlYw==
+
+core-js@^2.6.12:
+  version "2.6.12"
+  resolved "https://registry.npmmirror.com/core-js/-/core-js-2.6.12.tgz#d9333dfa7b065e347cc5682219d6f690859cc2ec"
+  integrity sha512-Kb2wC0fvsWfQrgk8HU5lW6U/Lcs8+9aaYcy4ZFc6DDlo4nZ7n70dEgE5rtR0oG6ufKDUnrwfWL1mXR5ljDatrQ==
 
 core-util-is@~1.0.0:
   version "1.0.3"
@@ -6775,6 +6788,15 @@ q@^1.5.1:
   resolved "https://registry.yarnpkg.com/q/-/q-1.5.1.tgz#7e32f75b41381291d04611f1bf14109ac00651d7"
   integrity sha512-kV/CThkXo6xyFEZUugw/+pIOywXcDbFYgSct5cT3gqlbkBE1SJdwy6UQoZvodiWF/ckQLZyDE/Bu1M6gVu5lVw==
 
+qiniu-js@^3.4.1:
+  version "3.4.1"
+  resolved "https://registry.npmmirror.com/qiniu-js/-/qiniu-js-3.4.1.tgz#0d258771164fac5d92df1797d1c55e38db934a57"
+  integrity sha512-8vxrLqDPlJUk3fUAaTozh3TAT3ww9B5KqGogmGuTiFHnewXDoMxTCSY5z8Ab5UNdrCo6ZxDM07G/o++CICRUFw==
+  dependencies:
+    "@babel/runtime-corejs2" "^7.10.2"
+    querystring "^0.2.1"
+    spark-md5 "^3.0.0"
+
 query-string@^5.0.1:
   version "5.1.1"
   resolved "https://registry.yarnpkg.com/query-string/-/query-string-5.1.1.tgz#a78c012b71c17e05f2e3fa2319dd330682efb3cb"
@@ -6792,6 +6814,11 @@ query-string@^8.0.3:
     decode-uri-component "^0.4.1"
     filter-obj "^5.1.0"
     split-on-first "^3.0.0"
+
+querystring@^0.2.1:
+  version "0.2.1"
+  resolved "https://registry.npmmirror.com/querystring/-/querystring-0.2.1.tgz#40d77615bb09d16902a85c3e38aa8b5ed761c2dd"
+  integrity sha512-wkvS7mL/JMugcup3/rMitHmd9ecIGd2lhFhK9N3UUQ450h66d1r3Y9nvXzQAW1Lq+wyx61k/1pfKS5KuKiyEbg==
 
 queue-microtask@^1.2.2:
   version "1.2.3"
@@ -7486,6 +7513,11 @@ sourcemap-codec@^1.4.8:
   version "1.4.8"
   resolved "https://registry.yarnpkg.com/sourcemap-codec/-/sourcemap-codec-1.4.8.tgz#ea804bd94857402e6992d05a38ef1ae35a9ab4c4"
   integrity sha512-9NykojV5Uih4lgo5So5dtw+f0JgJX30KCNI8gwhz2J9A15wD0Ml6tjHKwf6fTSa6fAdVBdZeNOs9eJ71qCk8vA==
+
+spark-md5@^3.0.0:
+  version "3.0.2"
+  resolved "https://registry.npmmirror.com/spark-md5/-/spark-md5-3.0.2.tgz#7952c4a30784347abcee73268e473b9c0167e3fc"
+  integrity sha512-wcFzz9cDfbuqe0FZzfi2or1sgyIrsDwmPwfZC4hiNidPdPINjeUwNfv5kldczoEAcjl9Y1L3SM7Uz2PUEQzxQw==
 
 spdx-correct@^3.0.0:
   version "3.1.1"
