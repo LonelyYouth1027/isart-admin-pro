@@ -93,6 +93,8 @@ yarn build:prod
 
 > 本模板使用 commitlint + husky 提交规范 详细内容请参考 https://blog.csdn.net/m0_67401134/article/details/123420687
 
+先取消了 Husky 的提交前校验，目前规则给的太死，提交报错，等稍后我们再探讨
+
 ```bash
 # 例子
 git add .
@@ -124,7 +126,5 @@ setupMock({
 ### 写在最后
 
 ##### 有什么好的建议请联系作者 songyueming@yisa.art
-
-先取消了 Husky 的提交前校验，目前规则给的太死，提交报错，等稍后我们再探讨
 
 ##### 好用的话建议点个 star 哦~
