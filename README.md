@@ -1,6 +1,6 @@
 # isart-admin-pro
 
-> 本模板参考 arco pro 需要掌握vite + vue3 + arco design + ts + es2015+ 详细内容请参考 https://arco.design/vue/docs/start
+> 本模板参考 arco pro 需要掌握 vite + vue3 + arco design + ts + es2015+ 详细内容请参考 https://arco.design/vue/docs/start
 
 ### 开始使用
 
@@ -17,11 +17,11 @@ cd isart-admin-pro
 yarn
 
 # develop
-yran dev
+yarn dev
 
 # 小tips: 这里推荐使用yarn管理工具和webstorm编辑器
 # 注: 作者node版本为14.19.1 node版本>=14.18均可 推荐使用14.19.1
-# 安装失败请删除根目录yarn.lock文件然后重新安装 
+# 安装失败请删除根目录yarn.lock文件然后重新安装
 ```
 
 ### 目录结构
@@ -33,7 +33,7 @@ yran dev
 ├── logo.ico
 ├── .eslintrc.js # eslint 配置
 ├── .prettierrc.js # prettierrc 配置
-├── .stylelintrc.js # stylelintrc 配置 
+├── .stylelintrc.js # stylelintrc 配置
 ├── .env.development # 开发 or 测试 环境配置
 ├── .env.production # 生产环境配置
 ├── apigen.js # apigen 生成接口请求脚本文件(可自定义)
@@ -61,17 +61,21 @@ yran dev
 └── tsconfig.json
 ```
 
+### 框架组件
+
+在`components/pro`的目录下，目前封装了 model-form、pro-from 和 search-form，简化了铺页面的过程，大部分的 crud 的页面，可以通过配置 config.ts 来实现
+
+之所以在当前框架中，自己封装了一下的好处是有一定的扩展性，因为之前也有小伙伴推荐过`Avue`之类的框架，思路其实是一样的，但是由于是 NPM 安装包的模式，导致如果需要修改的话，是没法操作的
+
+所以我们自己实现了一些简化的通用组件，如果组件不满足你的需求，你可以在项目中调整
+
 ### 工具脚本
 
-```bash
-# 生成ts请求文件 记得修改根目录下apigen.js的swaggerUrl变量
-yarn api
+2023 年 3 月，TerryQi 在宋岳明的思路上，开发了综合工具平台，主要解决如何根据后端的 Swagger 文档生成 ts 的 api 接口调用文件。
 
-# 对typescript语法进行类型检查
-yarn type:check
+[综合工具平台](http://tools-web.admin.wlone6.isart.me/#/apiTool)
 
-# 小tips: 请务必保证规范书写ts语法，否则会影响打包
-```
+[TeamBlog 说明](https://teamblog.isart.me/paas/tools/)
 
 ### 打包构建
 
@@ -85,7 +89,7 @@ yarn build:prod
 # 小tips: 请分别到 .env.development 和 .env.production文件 修改 VITE_API_BASE_URL
 ```
 
-### git提交
+### git 提交
 
 > 本模板使用 commitlint + husky 提交规范 详细内容请参考 https://blog.csdn.net/m0_67401134/article/details/123420687
 
@@ -100,7 +104,7 @@ git push -u origin 'master'
 # 提交类型 ci表示持续化集成 fix表示bug修复
 ```
 
-### mock模拟
+### mock 模拟
 
 ```bash
 # 注: 未接接口之前，所有数据均为mock数据 在调接口时需要关闭mock模拟
@@ -121,7 +125,4 @@ setupMock({
 
 ##### 有什么好的建议请联系作者 songyueming@yisa.art
 
-##### 好用的话建议点个star哦~
-
-
-
+##### 好用的话建议点个 star 哦~

@@ -48,8 +48,8 @@
     labelAlign: 'left',
   };
   const searchForm = ref();
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const handleSubmit = (values: any) => {
-    console.log(111, values);
     setLoading(true);
     const timer = setTimeout(() => {
       setLoading(false);
