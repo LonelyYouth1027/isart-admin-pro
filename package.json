@@ -14,8 +14,7 @@
     "preview": "npm run build && vite preview --host",
     "type:check": "vue-tsc --noEmit --skipLibCheck",
     "lint-staged": "npx lint-staged",
-    "prepare": "husky install",
-    "api": "node ./apigen.js"
+    "prepare": "husky install"
   },
   "lint-staged": {
     "*.{js,ts,jsx,tsx}": [
@@ -41,7 +40,6 @@
     "axios": "^0.24.0",
     "dayjs": "^1.11.5",
     "echarts": "^5.4.0",
-    "js-beautify": "^1.14.7",
     "js-md5": "^0.7.3",
     "lodash": "^4.17.21",
     "mitt": "^3.0.0",
@@ -51,7 +49,6 @@
     "query-string": "^8.0.3",
     "sortablejs": "^1.15.0",
     "stylelint-config-standard-vue": "^1.0.0",
-    "swagger-parser": "^10.0.3",
     "vue": "^3.2.40",
     "vue-echarts": "^6.2.3",
     "vue-i18n": "^9.2.2",

@@ -11,17 +11,17 @@ git clone https://gitee.com/qrqy/isart-admin-pro.git
 # enter the project directory
 cd isart-admin-pro
 
-# 没有yarn请先安装 npm install -g yarn
+# 没有pnpm请先安装 npm install -g pnpm
 
 # install dependency
-yarn
+pnpm install
 
 # develop
-yarn dev
+pnpm run dev
 
-# 小tips: 这里推荐使用yarn管理工具和webstorm编辑器
+# 小tips: 这里推荐使用pnpm管理工具和webstorm编辑器
 # 注: 作者node版本为14.19.1 node版本>=14.18均可 推荐使用14.19.1
-# 安装失败请删除根目录yarn.lock文件然后重新安装
+# 安装失败请删除根目录pnpm-lock.yaml文件然后重新安装
 ```
 
 ### 目录结构
