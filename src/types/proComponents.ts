@@ -58,4 +58,5 @@ export interface ModalFormConfig extends ProFormConfig {
   footer?: boolean; // 是否开启底部按钮
   formModel: any; // 表单控件
   formItems: ProFormItem[]; // 表单项配置
+  request?: any; // 请求方法
 }

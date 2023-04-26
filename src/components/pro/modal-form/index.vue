@@ -36,7 +36,7 @@
   const props = defineProps<{
     modalFormConfig: ModalFormConfig;
   }>();
-  const emits = defineEmits(['handleReset']);
+  const emits = defineEmits(['handleReset', 'handleSuccess']);
   const { loading, setLoading } = useLoading();
   const { modalFormConfig } = toRefs(props);
   const { formModel, formItems, title } = modalFormConfig.value;
@@ -47,6 +47,7 @@
     console.log(1111, values);
     const timer = setTimeout(() => {
       setLoading(false);
+      emits('handleSuccess');
       clearTimeout(timer);
     }, 2000);
   };
