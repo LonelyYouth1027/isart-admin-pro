@@ -57,9 +57,6 @@
       </a-table>
     </a-card>
     <modal-form
-      :title="formModal.id ? '编辑' : '新建'"
-      :form-items="modalFormItems"
-      :form-model="formModal"
       :modal-form-config="modalFormConfig"
       @handle-reset="handleReset"
     >
@@ -77,7 +74,7 @@
   import {
     columns,
     formSearch,
-    formModal,
+    formModel,
     data,
     formItems,
     modalFormItems,
@@ -88,6 +85,9 @@
     visible: false,
     footer: false,
     width: '1100px',
+    formItems: modalFormItems,
+    formModel,
+    title: formModel.id ? '编辑' : '新建',
   });
   // 分页控件
   const basePagination: Pagination = {
@@ -128,9 +128,9 @@
 
   // 编辑表单
   const handleEdit = (row: any) => {
-    formModal.name = row.name;
-    formModal.type = row.type;
-    formModal.id = row.id;
+    formModel.name = row.name;
+    formModel.type = row.type;
+    formModel.id = row.id;
     modalFormConfig.visible = true;
   };
 
@@ -140,7 +140,7 @@
   };
 
   const handleReset = () => {
-    formModal.id = null;
+    formModel.id = null;
   };
 
   onMounted(() => {

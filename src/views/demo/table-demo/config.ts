@@ -76,6 +76,7 @@ const formItems: any = [
     field: 'type',
     placeholder: '请选择',
     type: 'select',
+    fieldNames: { value: 'value', label: 'name' },
     options: [
       { value: 0, name: '不填' },
       { value: 1, name: '填' },
@@ -89,16 +90,19 @@ const formItems: any = [
   },
 ];
 
-const formModal = reactive({
-  name: '',
-  type: '',
-  textArea: '',
-  dateRangePicker: [],
-  editPassword: '',
-  mention: '',
-  textAreaEditor: '',
-  id: null,
-});
+const getInit = (): any => {
+  return {
+    name: '',
+    type: '',
+    textArea: '',
+    dateRangePicker: [],
+    editPassword: '',
+    mention: '',
+    textAreaEditor: '',
+    id: null,
+  };
+};
+const formModel = reactive<any>(getInit());
 
 const modalFormItems: any = [
   {
@@ -190,4 +194,12 @@ for (let i = 0; i < 20; i += 1) {
   data.push(obj);
 }
 
-export { columns, formSearch, formModal, data, formItems, modalFormItems };
+export {
+  columns,
+  formSearch,
+  formModel,
+  data,
+  formItems,
+  modalFormItems,
+  getInit,
+};

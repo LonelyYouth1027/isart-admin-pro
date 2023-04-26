@@ -28,24 +28,23 @@
 </template>
 
 <script setup lang="ts">
-  import { ModalFormConfig, ProFormItem } from '@/types/proComponents';
+  import { ModalFormConfig } from '@/types/proComponents';
   import ProForm from '@/components/pro/pro-form/index.vue';
   import { ref, toRefs } from 'vue';
   import useLoading from '@/hooks/loading';
 
   const props = defineProps<{
-    formModel: any;
-    formItems: ProFormItem[];
     modalFormConfig: ModalFormConfig;
-    title: string;
   }>();
   const emits = defineEmits(['handleReset']);
   const { loading, setLoading } = useLoading();
-  const { formModel, formItems, modalFormConfig, title } = toRefs(props);
+  const { modalFormConfig } = toRefs(props);
+  const { formModel, formItems, title } = modalFormConfig.value;
   const modalForm = ref();
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const handleSubmit = (values: any) => {
     setLoading(true);
+    console.log(1111, values);
     const timer = setTimeout(() => {
       setLoading(false);
       clearTimeout(timer);
@@ -53,7 +52,7 @@
   };
   const handleReset = () => {
     modalFormConfig.value.visible = false;
-    modalForm.value.$refs.formRef.resetFields();
+    modalForm.value.$refs.formRef.resetFields(); // todo 如果这个方法失效的话，可以使用下面的事件手动重置默认值
     emits('handleReset');
   };
 </script>

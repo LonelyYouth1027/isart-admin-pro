@@ -50,10 +50,12 @@ export interface ProFormConfig {
 
 // 模态表单的配置
 export interface ModalFormConfig extends ProFormConfig {
-  visible: boolean;
-  title?: string;
-  width?: string | number;
-  top?: string | number;
-  alignCenter?: boolean;
-  footer?: boolean;
+  visible: boolean; // 弹框控件
+  title?: string; // 弹框标题
+  width?: string | number; // 弹框宽度
+  top?: string | number; // 弹框距离页面顶部的距离 当alignCenter为false是生效
+  alignCenter?: boolean; // 弹框是否居中显示 默认为true
+  footer?: boolean; // 是否开启底部按钮
+  formModel: any; // 表单控件
+  formItems: ProFormItem[]; // 表单项配置
 }
