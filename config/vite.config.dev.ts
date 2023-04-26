@@ -10,6 +10,7 @@ export default mergeConfig(
       fs: {
         strict: true,
       },
+      host: '0.0.0.0',
     },
     plugins: [
       eslint({
