@@ -8,6 +8,7 @@ type ProFormType =
   | 'dateRangePicker'
   | 'textArea'
   | 'textAreaEditor'
+  | 'upload'
   | 'slot';
 
 type Layout = 'horizontal' | 'vertical' | 'inline'; // 表单的布局方式，包括水平、垂直、多列

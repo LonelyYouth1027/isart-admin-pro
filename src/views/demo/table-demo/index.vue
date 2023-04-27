@@ -71,6 +71,7 @@
   import SearchForm from '@/components/pro/search-form/index.vue';
   import ModalForm from '@/components/pro/modal-form/index.vue';
   import { ModalFormConfig } from '@/types/proComponents';
+  import controlObj from '@/utils/control-obj';
   import {
     columns,
     formSearch,
@@ -128,9 +129,7 @@
 
   // 编辑表单
   const handleEdit = (row: any) => {
-    formModel.name = row.name;
-    formModel.type = row.type;
-    formModel.id = row.id;
+    controlObj(formModel, row);
     modalFormConfig.visible = true;
   };
 

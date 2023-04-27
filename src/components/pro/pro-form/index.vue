@@ -84,6 +84,14 @@
               <template v-if="item.type === 'textAreaEditor'">
                 <basic-editor v-model:value="formModel[item.field]" />
               </template>
+              <template v-if="item.type === 'upload'">
+                <a-upload
+                  v-model:file-list="formModel[item.field]"
+                  :custom-request="customRequest"
+                  @success="handleUploadSuccess"
+                />
+              </template>
+
               <template v-if="item.type === 'slot'">
                 <slot :name="item.slotName"></slot>
               </template>
@@ -99,6 +107,8 @@
   import { ref, toRefs, watch } from 'vue';
   import { ProFormItem, ProFormConfig } from '@/types/proComponents';
   import BasicEditor from '@/components/basic-editor/index.vue';
+  // import * as qiniu from 'qiniu-js'; todo 七牛上传示例
+  // import useQiniuToken from '@/hooks/qiniu-token' todo 获取七牛token的hooks
 
   const props = defineProps<{
     formModel: any;
@@ -106,6 +116,7 @@
     formConfig: ProFormConfig;
     // request: any | null;
   }>();
+  // const { token } = useQiniuToken();
   const emits = defineEmits(['update:formModel', 'handleSubmit']);
   const { formModel, formItems, formConfig } = toRefs(props);
   const formRef = ref();
@@ -123,6 +134,40 @@
     if (!errors) {
       emits('handleSubmit', values);
     }
+  };
+
+  const customRequest = (option: any): any => {
+    console.log(111, option);
+    //   const { onProgress, onError, onSuccess, fileItem } = option;
+    //   const uploadKey = new Date().getTime() + fileItem.name; // 上传七牛云需要的key
+    //   return new Promise<any>((resolve) => {
+    //     // 向后台获取到上传七牛云的token；
+    //     uploadGetQiniuToken().then((res: any) => {
+    //       const qiniuToken = res.result.token;
+    //       // 向七牛云发起上传
+    //       const observable = qiniu.upload(fileItem.file, uploadKey, token.value);
+    //       observable.subscribe(
+    //         (event: any) => {
+    //           onProgress(event.total.percent);
+    //         },
+    //         (err: any) => {
+    //           onError(err);
+    //         },
+    //         (result: any) => {
+    //           // uploadResult 就是你文件存储在七牛云地址了
+    //           // resolve(true);
+    //           onSuccess(`https://dstc-qn.isart.me/${result.key}`);
+    //           Message.success({
+    //             content: '上传成功',
+    //             duration: 2 * 1000,
+    //           });
+    //         }
+    //       );
+    //     });
+    //   });
+  };
+  const handleUploadSuccess = (fileItem: any) => {
+    fileItem.url = fileItem.response;
   };
 </script>
 
