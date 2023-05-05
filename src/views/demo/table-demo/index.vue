@@ -2,10 +2,7 @@
   <div class="container">
     <Breadcrumb :items="['menu.demo', 'menu.list']" />
     <a-card class="general-card" :title="$t('menu.list')">
-      <search-form
-        :form-model="formSearch"
-        :form-items="formItems"
-      ></search-form>
+      <search-form :search-form-config="searchFormConfig"></search-form>
       <a-divider style="margin-top: 0" />
       <a-row>
         <a-col :flex="1">
@@ -70,7 +67,7 @@
   import useLoading from '@/hooks/loading';
   import SearchForm from '@/components/pro/search-form/index.vue';
   import ModalForm from '@/components/pro/modal-form/index.vue';
-  import { ModalFormConfig } from '@/types/proComponents';
+  import { ModalFormConfig, SearchFormConfig } from '@/types/proComponents';
   import controlObj from '@/utils/control-obj';
   import {
     columns,
@@ -89,6 +86,17 @@
     formItems: modalFormItems,
     formModel,
     title: formModel.id ? '编辑' : '新建',
+  });
+  const searchFormConfig = reactive<SearchFormConfig>({
+    formItems,
+    formModel: formSearch,
+    labelColProps: {
+      span: 6,
+    },
+    wrapperColProps: {
+      span: 18,
+    },
+    labelAlign: 'left',
   });
   // 分页控件
   const basePagination: Pagination = {

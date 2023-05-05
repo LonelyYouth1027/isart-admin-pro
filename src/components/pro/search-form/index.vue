@@ -26,27 +26,18 @@
 </template>
 
 <script setup lang="ts">
-  import { ProFormConfig, ProFormItem } from '@/types/proComponents';
+  import { SearchFormConfig } from '@/types/proComponents';
   import ProForm from '@/components/pro/pro-form/index.vue';
   import { ref, toRefs } from 'vue';
   import useLoading from '@/hooks/loading';
 
   const props = defineProps<{
-    formModel: any;
-    formItems: ProFormItem[];
+    searchFormConfig: SearchFormConfig;
   }>();
   const emits = defineEmits(['handleReset']);
   const { loading, setLoading } = useLoading();
-  const { formModel, formItems } = toRefs(props);
-  const searchFormConfig: ProFormConfig = {
-    labelColProps: {
-      span: 6,
-    },
-    wrapperColProps: {
-      span: 18,
-    },
-    labelAlign: 'left',
-  };
+  const { searchFormConfig } = toRefs(props);
+  const { formModel, formItems } = searchFormConfig.value;
   const searchForm = ref();
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const handleSubmit = (values: any) => {

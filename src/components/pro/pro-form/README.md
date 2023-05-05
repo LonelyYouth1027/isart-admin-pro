@@ -66,6 +66,8 @@ pro-form Props属性
 | formItems | 表单项数组  | ProFormItem [ ] 数组 array    |
 | formConfig | 表单配置   | ProFormConfig { } 对象 object |
 
+> 具体参数请参考/src/types/proComponents.ts
+
 pro-form Events事件
 
 | 参数名    | 描述         | 类型       |

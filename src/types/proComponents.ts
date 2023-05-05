@@ -47,6 +47,16 @@ export interface ProFormConfig {
   disabled?: boolean;
   rules?: any;
   autoLabelWidth?: boolean;
+  formModel?: any; // 表单控件
+  formItems?: ProFormItem[]; // 表单项配置
+  request?: any; // 请求方法
+}
+
+// 表单的配置
+export interface SearchFormConfig extends ProFormConfig {
+  formModel: any; // 表单控件
+  formItems: ProFormItem[]; // 表单项配置
+  request?: any; // 请求方法
 }
 
 // 模态表单的配置
