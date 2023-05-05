@@ -69,8 +69,7 @@
   import { useUserStore } from '@/store';
   import useLoading from '@/hooks/loading';
   import type { LoginData } from '@/api/user';
-  // import { Md5 } from 'ts-md5'; todo 使用MD5
-  // const md5 = new Md5(); todo 使用MD5
+  // import md5 from 'js-md5'; todo 使用MD5
   const router = useRouter();
   const { t } = useI18n();
   const errorMessage = ref('');
@@ -102,7 +101,7 @@
       try {
         // const data = {
         //   username: values.username,
-        //   md5Password: md5.appendStr(values.md5Password).end() , todo 使用MD5时 把107行的values换成data即可
+        //   md5Password: md5(values.md5Password) , todo 使用MD5时 把106行的values换成data即可
         // }
         await userStore.login(values as LoginData);
         const { redirect, ...othersQuery } = router.currentRoute.value.query;
