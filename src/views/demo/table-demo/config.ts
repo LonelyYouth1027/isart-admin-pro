@@ -174,9 +174,9 @@ const modalFormItems: any = [
     slotName: 'operate',
   },
 ];
-const data: any = [];
+const data: any = reactive([]);
 
-for (let i = 0; i < 20; i += 1) {
+for (let i = 0; i < 99; i += 1) {
   const obj: any = {
     id: i + 1,
     name: `小明的测试项目${i}`,

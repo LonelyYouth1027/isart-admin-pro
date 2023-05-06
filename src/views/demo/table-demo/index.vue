@@ -25,6 +25,7 @@
         style="margin-top: 20px"
         :bordered="true"
         @page-change="handlePage"
+        @page-size-change="handlePageSize"
       >
         <template #type="{ record }">
           <a-tag v-if="record.type === 0">不填</a-tag>
@@ -102,10 +103,15 @@
   const basePagination: Pagination = {
     current: 1,
     pageSize: 20,
+    total: 100,
   };
   // 分页器
   const pagination = reactive({
     ...basePagination,
+    showTotal: true,
+    showJumper: true,
+    showPageSize: true,
+    pageSizeOptions: [10, 20, 30, 40, 50],
   });
   // 设置表格滚动
   const scrollbar = ref(true);
@@ -115,7 +121,7 @@
     y: 447,
   };
   /**
-   * 获取数据
+   * 获取数据  todo 要把搜索参数带上
    */
   const handleGetData = async (params: any = {}) => {
     console.log(params);
@@ -127,6 +133,15 @@
    */
   const handlePage = (page: number) => {
     pagination.current = page;
+    handleGetData();
+  };
+
+  /**
+   * 更改每页条数
+   * @param pageSize 当前条数
+   */
+  const handlePageSize = (pageSize: number) => {
+    pagination.pageSize = pageSize;
     handleGetData();
   };
 
