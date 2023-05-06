@@ -20,6 +20,7 @@ export default {
   'menu.arcoWebsite': 'Arco Design',
   'menu.faq': 'FAQ',
   'menu.demo': 'Demo',
+  'menu.demo.responsive': 'Responsive of list',
   'navbar.docs': 'Docs',
   'navbar.action.locale': 'Switch to English',
   ...localeSettings,

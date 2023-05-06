@@ -22,6 +22,16 @@ const DEMO: AppRouteRecordRaw = {
         roles: ['*'],
       },
     },
+    {
+      path: 'table-responsive',
+      name: 'ResponsiveTable',
+      component: () => import('@/views/demo/table-responsive/index.vue'),
+      meta: {
+        locale: 'menu.demo.responsive',
+        requiresAuth: true,
+        roles: ['*'],
+      },
+    },
   ],
 };
 
