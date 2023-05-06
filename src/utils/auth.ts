@@ -35,7 +35,7 @@ const clearToken = () => {
  * 存储用户信息
  */
 const setUserInfo = (val: any) => {
-  localStorage.setItem(USER_INFO, val);
+  localStorage.setItem(USER_INFO, JSON.stringify(val));
 };
 
 /**
