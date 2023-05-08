@@ -18,22 +18,70 @@
       <a-divider style="margin-top: 0" />
       <a-row>
         <a-col :flex="1">
-          <a-button type="primary" @click="handleClick">
-            <template #icon>
-              <icon-plus />
-            </template>
-            <template #default>新建</template>
-          </a-button>
+          <a-space>
+            <a-button type="primary" @click="handleClick">
+              <template #icon>
+                <icon-plus />
+              </template>
+              <template #default>新建</template>
+            </a-button>
+            <a-tooltip content="刷新" mini>
+              <a-button type="text" shape="circle">
+                <icon-refresh :size="20" @click="handleGetData" />
+              </a-button>
+            </a-tooltip>
+            <a-tooltip content="密度" mini>
+              <a-dropdown @select="handleSelect">
+                <a-button type="text" shape="circle">
+                  <icon-shrink :size="20" />
+                </a-button>
+                <template #content>
+                  <a-doption value="default"> 默认 </a-doption>
+                  <a-doption value="medium"> 中等 </a-doption>
+                  <a-doption value="large"> 大号 </a-doption>
+                </template>
+              </a-dropdown>
+            </a-tooltip>
+            <a-tooltip content="列设置" mini>
+              <a-dropdown>
+                <a-button type="text" shape="circle">
+                  <icon-settings :size="20" />
+                </a-button>
+                <template #content>
+                  <a-space fill style="justify-content: space-around">
+                    <a-checkbox>全选</a-checkbox>
+                    <a-button type="text">重置</a-button>
+                  </a-space>
+                  <a-divider style="margin: 10px 0 !important" />
+                  <a-row style="width: 200px" justify="center">
+                    <a-col
+                      v-for="item in columns"
+                      :key="item.dataIndex"
+                      :span="13"
+                      style="height: 20px"
+                    >
+                      <a-checkbox v-model="item.show">{{
+                        item.title
+                      }}</a-checkbox>
+                    </a-col>
+                  </a-row>
+                </template>
+              </a-dropdown>
+            </a-tooltip>
+          </a-space>
         </a-col>
       </a-row>
       <a-table
+        v-model:selectedKeys="selectedKeys"
         row-key="id"
         :scroll="scroll"
         :scrollbar="scrollbar"
-        :columns="columns"
+        :columns="columnsFilter"
         :data="data"
+        :row-selection="rowSelection"
         :loading="loading"
         :pagination="pagination"
+        column-resizable
         style="margin-top: 20px"
         :bordered="true"
         @page-change="handlePage"
@@ -75,7 +123,7 @@
 </template>
 
 <script setup lang="ts">
-  import { ref, reactive, onMounted } from 'vue';
+  import { ref, reactive, onMounted, computed } from 'vue';
   import { Pagination } from '@/types/global';
   import useLoading from '@/hooks/loading';
   import SearchForm from '@/components/pro/responsive/search-form.vue';
@@ -91,9 +139,13 @@
     data,
     formItems,
     modalFormItems,
+    getInitColumns,
   } from './config';
 
-  const { loading } = useLoading(false); // 表格loading
+  const columnsFilter = computed(() => {
+    return columns.value.filter((item: any) => item.show);
+  });
+  const { loading, setLoading } = useLoading(false); // 表格loading
   const show = ref<boolean>(false);
   const modalFormConfig = reactive<ModalFormConfig>({
     visible: false,
@@ -128,17 +180,30 @@
     showPageSize: true,
     pageSizeOptions: [10, 20, 30, 40, 50],
   });
+
+  const selectedKeys = ref([]); // 选中的数组
+
+  // 多选控件
+  const rowSelection: any = reactive({
+    type: 'checkbox',
+    showCheckedAll: true,
+  });
   // 设置表格滚动
   const scrollbar = ref(true);
   // 表格滚动参数
   const scroll = {
     x: 0,
-    y: 447,
+    y: 430,
   };
   /**
    * 获取数据  todo 要把搜索参数带上
    */
   const handleGetData = async (params: any = {}) => {
+    setLoading(true);
+    const timer = setTimeout(() => {
+      setLoading(false);
+      clearTimeout(timer);
+    }, 1000);
     console.log(params);
   };
 
@@ -188,6 +253,31 @@
     });
   };
 
+  const handleSelect = (val: string) => {
+    switch (val) {
+      case 'default':
+        columns.value = getInitColumns();
+        break;
+      case 'medium':
+        columns.value = getInitColumns().map((item: any) => {
+          item.width += 20;
+          item.cellStyle = { height: '50px' };
+          return item;
+        });
+        break;
+      case 'large':
+        columns.value = getInitColumns().map((item: any) => {
+          item.width += 50;
+          item.cellStyle = { height: '80px' };
+          return item;
+        });
+        break;
+      default:
+        columns.value = getInitColumns();
+        break;
+    }
+  };
+
   onMounted(() => {
     handleGetData();
   });
@@ -199,6 +289,6 @@
   }
 
   :deep(.arco-table-container) {
-    min-height: 447px !important;
+    min-height: 430px !important;
   }
 </style>

@@ -1,61 +1,73 @@
-import { reactive } from 'vue';
+import { reactive, ref } from 'vue';
 
-const columns: any = [
-  {
-    title: '项目名称',
-    dataIndex: 'name',
-    ellipsis: true,
-    tooltip: { position: 'bottom' },
-    width: 200,
-    fixed: 'left',
-  },
-  {
-    title: '项目类型',
-    dataIndex: 'projectType.message',
-    width: 120,
-  },
-  {
-    title: '备注',
-    dataIndex: 'type',
-    slotName: 'type',
-    width: 100,
-  },
-  {
-    title: '项目负责人',
-    dataIndex: 'leaderName',
-    width: 120,
-  },
-  {
-    title: '预算',
-    dataIndex: 'budget',
-    width: 100,
-  },
-  {
-    title: '是否立项',
-    dataIndex: 'generalState',
-    slotName: 'generalState',
-    width: 100,
-  },
-  {
-    title: '状态',
-    dataIndex: 'status',
-    slotName: 'status',
-    width: 100,
-  },
-  {
-    title: '创建时间',
-    dataIndex: 'createdAt',
-    width: 200,
-  },
-  {
-    title: '操作',
-    align: 'center',
-    width: 250,
-    fixed: 'right',
-    slotName: 'operation',
-    dataIndex: 'operation',
-  },
-];
+const getInitColumns = () => {
+  return [
+    {
+      title: '项目名称',
+      dataIndex: 'name',
+      ellipsis: true,
+      tooltip: { position: 'bottom' },
+      width: 200,
+      fixed: 'left',
+      show: true,
+    },
+    {
+      title: '项目类型',
+      dataIndex: 'projectType.message',
+      width: 120,
+      show: true,
+    },
+    {
+      title: '备注',
+      dataIndex: 'type',
+      slotName: 'type',
+      width: 100,
+      show: true,
+    },
+    {
+      title: '项目负责人',
+      dataIndex: 'leaderName',
+      width: 120,
+      show: true,
+    },
+    {
+      title: '预算',
+      dataIndex: 'budget',
+      width: 100,
+      show: true,
+    },
+    {
+      title: '是否立项',
+      dataIndex: 'generalState',
+      slotName: 'generalState',
+      width: 100,
+      show: true,
+    },
+    {
+      title: '状态',
+      dataIndex: 'status',
+      slotName: 'status',
+      width: 100,
+      show: true,
+    },
+    {
+      title: '创建时间',
+      dataIndex: 'createdAt',
+      width: 200,
+      show: true,
+    },
+    {
+      title: '操作',
+      align: 'center',
+      fixed: 'right',
+      width: 250,
+      show: true,
+      slotName: 'operation',
+      dataIndex: 'operation',
+    },
+  ];
+};
+const columns = ref<any>(getInitColumns());
 
 // 表单控件
 const formSearch = reactive({
@@ -226,4 +238,5 @@ export {
   formItems,
   modalFormItems,
   getInit,
+  getInitColumns,
 };
