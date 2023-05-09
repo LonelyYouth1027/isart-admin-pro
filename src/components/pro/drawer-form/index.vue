@@ -1,16 +1,14 @@
 <template>
-  <a-modal
-    v-model:visible="modalFormConfig.visible"
-    :top="modalFormConfig.top"
-    :align-center="modalFormConfig.alignCenter"
-    :width="modalFormConfig.width"
+  <a-drawer
+    v-model:visible="drawerFormConfig.visible"
+    :width="drawerFormConfig.width"
     :title="title"
-    :footer="modalFormConfig.footer"
+    :footer="drawerFormConfig.footer"
     @cancel="handleReset"
   >
     <pro-form
-      ref="modalForm"
-      :form-config="modalFormConfig"
+      ref="drawerForm"
+      :form-config="drawerFormConfig"
       :form-model="formModel"
       :form-items="formItems"
       @handle-submit="handleSubmit"
@@ -24,24 +22,24 @@
         </a-space>
       </template>
     </pro-form>
-  </a-modal>
+  </a-drawer>
 </template>
 
 <script setup lang="ts">
-  import { ModalFormConfig } from '@/types/proComponents';
+  import { DrawerFormConfig } from '@/types/proComponents';
   import ProForm from '@/components/pro/pro-form/index.vue';
   import { ref, toRefs } from 'vue';
   import useLoading from '@/hooks/loading';
 
   const props = defineProps<{
-    modalFormConfig: ModalFormConfig;
+    drawerFormConfig: DrawerFormConfig;
     title: string;
   }>();
   const emits = defineEmits(['handleReset', 'handleSuccess']);
   const { loading, setLoading } = useLoading();
-  const { modalFormConfig } = toRefs(props);
-  const { formModel, formItems } = modalFormConfig.value;
-  const modalForm = ref();
+  const { drawerFormConfig } = toRefs(props);
+  const { formModel, formItems } = drawerFormConfig.value;
+  const drawerForm = ref();
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const handleSubmit = (values: any) => {
     setLoading(true);
@@ -53,8 +51,8 @@
     }, 2000);
   };
   const handleReset = () => {
-    modalFormConfig.value.visible = false;
-    modalForm.value.$refs.formRef.resetFields(); // todo 如果这个方法失效的话，可以使用下面的事件手动重置默认值
+    drawerFormConfig.value.visible = false;
+    drawerForm.value.$refs.formRef.resetFields(); // todo 如果这个方法失效的话，可以使用下面的事件手动重置默认值
     emits('handleReset');
   };
 </script>

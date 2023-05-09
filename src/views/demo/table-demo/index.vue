@@ -56,6 +56,7 @@
     </a-card>
     <modal-form
       :modal-form-config="modalFormConfig"
+      :title="formModel.id ? '编辑' : '新建'"
       @handle-reset="handleReset"
     >
     </modal-form>
@@ -86,7 +87,6 @@
     width: '1100px',
     formItems: modalFormItems,
     formModel,
-    title: formModel.id ? '编辑' : '新建',
   });
   const searchFormConfig = reactive<SearchFormConfig>({
     formItems,

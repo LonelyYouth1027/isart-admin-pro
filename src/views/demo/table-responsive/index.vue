@@ -49,8 +49,15 @@
                 </a-button>
                 <template #content>
                   <a-space fill style="justify-content: space-around">
-                    <a-checkbox>全选</a-checkbox>
-                    <a-button type="text">重置</a-button>
+                    <a-checkbox
+                      v-model="checkAll"
+                      :indeterminate="indeterminate"
+                      @change="handleChangeAll"
+                      >全选</a-checkbox
+                    >
+                    <a-button type="text" @click="handleChangeReset"
+                      >重置</a-button
+                    >
                   </a-space>
                   <a-divider style="margin: 10px 0 !important" />
                   <a-row style="width: 200px" justify="center">
@@ -71,11 +78,24 @@
           </a-space>
         </a-col>
       </a-row>
+      <a-row v-show="selectedKeys.length > 0" class="m-t-25">
+        <a-col :flex="1">
+          <a-alert>
+            已选择 {{ selectedKeys.length }} 项
+            <template #action>
+              <a-button
+                size="small"
+                type="text"
+                @click="selectedKeys.length = 0"
+                >取消选择</a-button
+              >
+            </template>
+          </a-alert>
+        </a-col>
+      </a-row>
       <a-table
         v-model:selectedKeys="selectedKeys"
         row-key="id"
-        :scroll="scroll"
-        :scrollbar="scrollbar"
         :columns="columnsFilter"
         :data="data"
         :row-selection="rowSelection"
@@ -114,11 +134,23 @@
         </template>
       </a-table>
     </a-card>
-    <modal-form
-      :modal-form-config="modalFormConfig"
+    <drawer-form
+      :drawer-form-config="drawerFormConfig"
+      :title="formModel.id ? '编辑' : '新建'"
       @handle-reset="handleReset"
     >
-    </modal-form>
+    </drawer-form>
+    <div v-show="selectedKeys.length > 0" class="actions">
+      <a-row>
+        <a-col :span="12"> 已选择 {{ selectedKeys.length }} 项 </a-col>
+        <a-col :span="12">
+          <a-space>
+            <a-button> 批量删除 </a-button>
+            <a-button type="primary"> 批量审批 </a-button>
+          </a-space>
+        </a-col>
+      </a-row>
+    </div>
   </div>
 </template>
 
@@ -127,8 +159,8 @@
   import { Pagination } from '@/types/global';
   import useLoading from '@/hooks/loading';
   import SearchForm from '@/components/pro/responsive/search-form.vue';
-  import ModalForm from '@/components/pro/modal-form/index.vue';
-  import { ModalFormConfig, SearchFormConfig } from '@/types/proComponents';
+  import DrawerForm from '@/components/pro/drawer-form/index.vue';
+  import { DrawerFormConfig, SearchFormConfig } from '@/types/proComponents';
   import controlObj from '@/utils/control-obj';
   import { Notification } from '@arco-design/web-vue';
   import ResponsiveForm from './components/responsive-form.vue';
@@ -142,18 +174,59 @@
     getInitColumns,
   } from './config';
 
+  // 过滤之后的columns
   const columnsFilter = computed(() => {
     return columns.value.filter((item: any) => item.show);
   });
+
+  // 是否为半选状态
+  const indeterminate = computed(() => {
+    return (
+      columnsFilter.value.length !== 0 &&
+      columnsFilter.value.length !== columns.value.length
+    );
+  });
+
+  // 是否为全选状态
+  const checkAll = computed(() => {
+    return columnsFilter.value.length === columns.value.length;
+  });
+
+  /**
+   * 改变全选列
+   * @param value
+   */
+  const handleChangeAll = (value: boolean) => {
+    if (value) {
+      columns.value.map((item: any) => {
+        item.show = true;
+        return item;
+      });
+    } else {
+      columns.value.map((item: any) => {
+        item.show = false;
+        return item;
+      });
+    }
+  };
+  /**
+   * 重置全选列
+   */
+  const handleChangeReset = () => {
+    columns.value.map((item: any) => {
+      item.show = true;
+      return item;
+    });
+  };
+
   const { loading, setLoading } = useLoading(false); // 表格loading
   const show = ref<boolean>(false);
-  const modalFormConfig = reactive<ModalFormConfig>({
+  const drawerFormConfig = reactive<DrawerFormConfig>({
     visible: false,
     footer: false,
     width: '1100px',
     formItems: modalFormItems,
     formModel,
-    title: formModel.id ? '编辑' : '新建',
   });
   const searchFormConfig = reactive<SearchFormConfig>({
     formItems,
@@ -189,12 +262,12 @@
     showCheckedAll: true,
   });
   // 设置表格滚动
-  const scrollbar = ref(true);
+  // const scrollbar = ref(true);
   // 表格滚动参数
-  const scroll = {
-    x: 0,
-    y: 430,
-  };
+  // const scroll = {
+  //   x: 0,
+  //   y: 430,
+  // };
   /**
    * 获取数据  todo 要把搜索参数带上
    */
@@ -227,13 +300,13 @@
 
   // 打开modal框
   const handleClick = () => {
-    modalFormConfig.visible = true;
+    drawerFormConfig.visible = true;
   };
 
   // 编辑表单
   const handleEdit = (row: any) => {
-    controlObj(formModel, row);
-    modalFormConfig.visible = true;
+    controlObj(drawerFormConfig.formModel, row);
+    drawerFormConfig.visible = true;
   };
 
   // 禁用启用
@@ -290,5 +363,17 @@
 
   :deep(.arco-table-container) {
     min-height: 430px !important;
+  }
+
+  .actions {
+    position: fixed;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    height: 60px;
+    padding: 14px 20px 14px 0;
+    text-align: right;
+    background: var(--color-bg-2);
+    z-index: 999;
   }
 </style>

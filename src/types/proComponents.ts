@@ -47,8 +47,8 @@ export interface ProFormConfig {
   disabled?: boolean;
   rules?: any;
   autoLabelWidth?: boolean;
-  formModel?: any; // 表单控件
-  formItems?: ProFormItem[]; // 表单项配置
+  formModel: any; // 表单控件
+  formItems: ProFormItem[]; // 表单项配置
   request?: any; // 请求方法
 }
 
@@ -67,7 +67,15 @@ export interface ModalFormConfig extends ProFormConfig {
   top?: string | number; // 弹框距离页面顶部的距离 当alignCenter为false是生效
   alignCenter?: boolean; // 弹框是否居中显示 默认为true
   footer?: boolean; // 是否开启底部按钮
-  formModel: any; // 表单控件
-  formItems: ProFormItem[]; // 表单项配置
-  request?: any; // 请求方法
+}
+
+// 抽屉表单的配置
+export interface DrawerFormConfig extends ProFormConfig {
+  visible: boolean; // 抽屉控件
+  title?: string; // 抽屉标题
+  width?: string | number; // 抽屉宽度 仅在placement为right,left时可用）
+  height?: string | number; // 抽屉高度 仅在placement为top,bottom时可用）
+  placement?: string; // 抽屉放置的位置 'top' | 'right' | 'bottom' | 'left' 默认 'right'
+  maskClosable?: boolean; // 点击遮罩层是否可以关闭
+  footer?: boolean; // 是否展示底部内容
 }
