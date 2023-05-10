@@ -141,10 +141,16 @@
     >
     </drawer-form>
     <div v-show="selectedKeys.length > 0" class="actions">
-      <a-row>
-        <a-col :span="12"> 已选择 {{ selectedKeys.length }} 项 </a-col>
+      <a-row style="background: var(--color-bg-2); height: 100%" align="center">
+        <a-col :span="12" style="color: var(--color-text-1)">
+          已选择
+          <span style="color: rgb(var(--arcoblue-6))">{{
+            selectedKeys.length
+          }}</span>
+          项
+        </a-col>
         <a-col :span="12">
-          <a-space>
+          <a-space fill style="justify-content: end">
             <a-button> 批量删除 </a-button>
             <a-button type="primary"> 批量审批 </a-button>
           </a-space>
@@ -351,8 +357,31 @@
     }
   };
 
+  /**
+   * 动态控制底部操作栏宽度
+   */
+  const handleActionsWidth = () => {
+    const menuHtml: any = document.getElementsByClassName('arco-menu-inner')[0];
+    const actionsHtml: any = document.getElementsByClassName('actions')[0];
+    const callback = (mutations: any) => {
+      mutations.forEach((item: any) => {
+        const additionalWidth = item.contentRect.width > 200 ? 5 : 1;
+        const menuWidth: number =
+          item.contentRect.x +
+          item.contentRect.y +
+          item.contentRect.width +
+          additionalWidth;
+        actionsHtml.style.width = `calc(100% - ${menuWidth}px)`;
+        // actionsHtml.style.left = `${menuWidth}px)`;
+      });
+    };
+    const observer = new ResizeObserver(callback);
+    observer.observe(menuHtml);
+  };
+
   onMounted(() => {
     handleGetData();
+    handleActionsWidth();
   });
 </script>
 
@@ -369,11 +398,12 @@
     position: fixed;
     right: 0;
     bottom: 0;
-    left: 0;
     height: 60px;
-    padding: 14px 20px 14px 0;
-    text-align: right;
+    padding: 0 20px;
+    //text-align: right;
     background: var(--color-bg-2);
     z-index: 999;
+    box-shadow: 0 -6px 16px -8px rgba(0, 0, 0, 0.08),
+      0 -9px 28px 0 rgba(0, 0, 0, 0.05), 0 -12px 48px 16px rgba(0, 0, 0, 0.03);
   }
 </style>
