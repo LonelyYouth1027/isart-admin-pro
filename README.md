@@ -2,6 +2,10 @@
 
 > 本模板参考 arco pro 需要掌握 vite + vue3 + arco design + ts + es2015+ 详细内容请参考 https://arco.design/vue/docs/start
 
+### isart-cli 现已发布
+
+https://www.npmjs.com/package/isart-cli
+
 ### 开始使用
 
 ```bash
@@ -36,7 +40,6 @@ pnpm run dev
 ├── .stylelintrc.js # stylelintrc 配置
 ├── .env.development # 开发 or 测试 环境配置
 ├── .env.production # 生产环境配置
-├── apigen.js # apigen 生成接口请求脚本文件(可自定义)
 ├── config # 打包构建配置
 ├── src
 │   ├── api  # 请求接口
