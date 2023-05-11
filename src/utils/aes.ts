@@ -1,7 +1,7 @@
 import CryptoJS from 'crypto-js';
 
-const AES_KEY = 'b2c17b46e2b1415392aab5a82869856c';
-const AES_IV = '61960842';
+const AES_KEY = ''; // 密钥
+const AES_IV = ''; // iv偏移量
 
 /**
  * 随机生成指定数量的16进制key
