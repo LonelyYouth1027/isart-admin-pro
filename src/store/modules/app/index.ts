@@ -5,6 +5,11 @@ import type { RouteRecordNormalized } from 'vue-router';
 import defaultSettings from '@/config/settings.json';
 import { getMenuList } from '@/api/user';
 import { AppState } from './types';
+// import utils from '@/utils/utils'; todo 进行前后端路由比对
+// import { appRoutes } from '@/router/routes'; todo 前端所有路由
+// import { getPermissionList } from '@/utils/auth'; todo 后端所有路由
+
+// import { getMenuList } from '@/api/user'; 这个不需要
 
 const useAppStore = defineStore('app', {
   state: (): AppState => ({ ...defaultSettings }),
@@ -59,6 +64,14 @@ const useAppStore = defineStore('app', {
           content: 'success',
           closable: true,
         });
+
+        // const permissionList = getPermissionList();  todo 进行路由比对 需要注释 55～57行代码
+        // if (permissionList && permissionList.length) {
+        //   this.serverMenu = utils.recursionRouter(
+        //     permissionList,
+        //     appRoutes as any
+        //   );
+        // }
       } catch (error) {
         // eslint-disable-next-line @typescript-eslint/no-unused-vars
         notifyInstance = Notification.error({

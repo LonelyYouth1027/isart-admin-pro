@@ -30,6 +30,10 @@ axios.interceptors.request.use(
       }
       config.headers.Authorization = `Bearer ${token}`;
     }
+
+    if (import.meta.env.VITE_API_BASE_AES === 'true') {
+      console.log('开始AES加密');
+    }
     return config;
   },
   (error) => {
