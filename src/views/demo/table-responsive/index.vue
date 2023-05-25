@@ -202,7 +202,7 @@
    * 改变全选列
    * @param value
    */
-  const handleChangeAll = (value: boolean) => {
+  const handleChangeAll = (value: any) => {
     if (value) {
       columns.value.map((item: any) => {
         item.show = true;
@@ -332,7 +332,7 @@
     });
   };
 
-  const handleSelect = (val: string) => {
+  const handleSelect = (val: any) => {
     switch (val) {
       case 'default':
         columns.value = getInitColumns();
