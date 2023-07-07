@@ -130,6 +130,7 @@ const getInit = (): any => {
   return {
     name: '',
     type: '',
+    type1: '',
     textArea: '',
     dateRangePicker: [],
     editPassword: '',
@@ -152,6 +153,19 @@ const modalFormItems: any = [
   {
     label: '备注',
     field: 'type',
+    placeholder: '请选择',
+    type: 'select',
+    span: 12,
+    fieldNames: { value: 'value', label: 'name' },
+    options: [
+      { value: 0, name: '不填' },
+      { value: 1, name: '填' },
+    ],
+    rules: [{ required: true, message: '必填' }],
+  },
+  {
+    label: '备注1',
+    field: 'type1',
     placeholder: '请选择',
     type: 'select',
     span: 12,

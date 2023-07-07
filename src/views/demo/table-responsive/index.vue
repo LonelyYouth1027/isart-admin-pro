@@ -209,6 +209,7 @@
         return item;
       });
     } else {
+      console.log(111);
       columns.value.map((item: any) => {
         item.show = false;
         return item;
