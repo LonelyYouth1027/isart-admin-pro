@@ -124,7 +124,7 @@
    * 获取数据  todo 要把搜索参数带上
    */
   const handleGetData = async (params: any = {}) => {
-    console.log(params);
+    console.log(111111, params);
   };
 
   /**
