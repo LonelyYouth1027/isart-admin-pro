@@ -15,7 +15,7 @@
         @submit="handleSubmit"
       >
         <a-grid
-          :cols="{ xxl: 3, xl: 2, lg: 2, md: 1, sm: 1, xs: 1 }"
+          :cols="{ xxl: 4, xl: 2, lg: 2, md: 1, sm: 1, xs: 1 }"
           :col-gap="12"
         >
           <a-grid-item v-for="item in formItems" :key="item.field">

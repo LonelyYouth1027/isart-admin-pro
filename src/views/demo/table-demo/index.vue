@@ -2,7 +2,12 @@
   <div class="container">
     <Breadcrumb :items="['menu.demo', 'menu.list']" />
     <a-card class="general-card" :title="$t('menu.list')">
-      <search-form :search-form-config="searchFormConfig"></search-form>
+      <p-form
+        ref="formRef"
+        :model="form"
+        :form-options="formItems"
+        @submit="handleSubmit"
+      ></p-form>
       <a-divider style="margin-top: 0" />
       <a-row>
         <a-col :flex="1">
@@ -71,6 +76,7 @@
   import ModalForm from '@/components/pro/modal-form/index.vue';
   import { ModalFormConfig, SearchFormConfig } from '@/types/proComponents';
   import controlObj from '@/utils/control-obj';
+  import PForm from '@/components/plus/p-form/index.vue';
   import {
     columns,
     formSearch,
@@ -125,6 +131,16 @@
    */
   const handleGetData = async (params: any = {}) => {
     console.log(params);
+  };
+
+  const formRef = ref<any>();
+  const form = ref<any>({});
+
+  const handleSubmit = ({ errors, values }: any) => {
+    console.log(values);
+    const timer = setTimeout(() => {
+      clearTimeout(timer);
+    }, 1000);
   };
 
   /**

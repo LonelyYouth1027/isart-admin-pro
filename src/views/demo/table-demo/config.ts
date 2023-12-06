@@ -1,4 +1,5 @@
-import { reactive } from 'vue';
+import { reactive, ref } from 'vue';
+import { ProFormItem } from '@/components/plus/p-form/type';
 
 const columns: any = [
   {
@@ -63,32 +64,60 @@ const formSearch = reactive({
   type: '',
 });
 
-const formItems: any = [
+const formItems = ref<ProFormItem[]>([
   {
     label: '项目名称',
     field: 'name',
-    placeholder: '请输入项目名称',
-    type: 'input',
-    span: 8,
+    component: 'AInput',
+    props: {
+      placeholder: '请输入项目名称',
+    },
   },
   {
-    label: '备注',
-    field: 'type',
-    placeholder: '请选择',
-    type: 'select',
-    fieldNames: { value: 'value', label: 'name' },
-    options: [
-      { value: 0, name: '不填' },
-      { value: 1, name: '填' },
-    ],
-    span: 8,
+    label: '项目名称1',
+    field: 'name1',
+    component: 'AInput',
+    props: {
+      placeholder: '请输入项目名称',
+    },
   },
   {
-    type: 'slot',
-    slotName: 'operate',
-    span: 8,
+    label: '项目名称2',
+    field: 'name2',
+    component: 'AInput',
+    props: {
+      placeholder: '请输入项目名称',
+    },
   },
-];
+  {
+    label: '项目名称3',
+    field: 'name3',
+    component: 'AInput',
+    props: {
+      placeholder: '请输入项目名称',
+    },
+  },
+  {
+    label: '项目名称4',
+    field: 'name4',
+    component: 'AInput',
+    props: {
+      placeholder: '请输入项目名称',
+    },
+  },
+  {
+    label: '是否备注',
+    field: 'select',
+    component: 'ASelect',
+    props: {
+      placeholder: '请选择',
+      options: [
+        { label: '是', value: 1 },
+        { label: '否', value: 0 },
+      ],
+    },
+  },
+]);
 
 const getInit = (): any => {
   return {

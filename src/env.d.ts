@@ -14,3 +14,4 @@ declare module '@wangeditor/editor';
 declare module 'js-md5';
 declare module 'qiniu-js';
 declare module 'crypto-js';
+declare module 'gojs';

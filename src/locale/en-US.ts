@@ -21,6 +21,7 @@ export default {
   'menu.faq': 'FAQ',
   'menu.demo': 'Demo',
   'menu.demo.responsive': 'Responsive of list',
+  'menu.demo.chart': 'demo chart',
   'navbar.docs': 'Docs',
   'navbar.action.locale': 'Switch to English',
   ...localeSettings,

@@ -21,6 +21,7 @@ export default {
   'menu.faq': '常见问题',
   'menu.demo': '示例demo',
   'menu.demo.responsive': '响应式列表',
+  'menu.demo.chart': '拓扑图',
   'navbar.docs': '文档中心',
   'navbar.action.locale': '切换为中文',
   ...localeSettings,
