@@ -2,12 +2,13 @@
   <div class="container">
     <Breadcrumb :items="['menu.demo', 'menu.list']" />
     <a-card class="general-card" :title="$t('menu.list')">
-      <p-form
-        ref="formRef"
+      <search-form
         :model="form"
         :form-options="formItems"
+        :loading="loading"
         @submit="handleSubmit"
-      ></p-form>
+        @reset="handleGetData"
+      ></search-form>
       <a-divider style="margin-top: 0" />
       <a-row>
         <a-col :flex="1">
@@ -60,11 +61,14 @@
       </a-table>
     </a-card>
     <modal-form
-      :modal-form-config="modalFormConfig"
-      :title="formModel.id ? '编辑' : '新建'"
-      @handle-reset="handleReset"
-    >
-    </modal-form>
+      v-model:visible="visible"
+      title="新建"
+      :model="editForm"
+      :form-options="modalFormItems"
+      :loading="loading"
+      @cancel="handleCancel"
+      @ok="handleOk"
+    ></modal-form>
   </div>
 </template>
 
@@ -72,39 +76,15 @@
   import { ref, reactive, onMounted } from 'vue';
   import { Pagination } from '@/types/global';
   import useLoading from '@/hooks/loading';
-  import SearchForm from '@/components/pro/search-form/index.vue';
-  import ModalForm from '@/components/pro/modal-form/index.vue';
-  import { ModalFormConfig, SearchFormConfig } from '@/types/proComponents';
   import controlObj from '@/utils/control-obj';
-  import PForm from '@/components/plus/p-form/index.vue';
-  import {
-    columns,
-    formSearch,
-    formModel,
-    data,
-    formItems,
-    modalFormItems,
-  } from './config';
+  import useVisible from '@/hooks/visible';
+  import { columns, data, formItems, modalFormItems } from './config';
 
-  const { loading } = useLoading(false); // 表格loading
-  const modalFormConfig = reactive<ModalFormConfig>({
-    visible: false,
-    footer: false,
-    width: '1100px',
-    formItems: modalFormItems,
-    formModel,
-  });
-  const searchFormConfig = reactive<SearchFormConfig>({
-    formItems,
-    formModel: formSearch,
-    labelColProps: {
-      span: 6,
-    },
-    wrapperColProps: {
-      span: 18,
-    },
-    labelAlign: 'left',
-  });
+  const form = ref<any>({});
+  const editForm = ref<any>({});
+  const { loading, setLoading } = useLoading(false); // 表格loading
+  const { visible, setVisible } = useVisible(false); // 表格loading
+
   // 分页控件
   const basePagination: Pagination = {
     current: 1,
@@ -127,18 +107,17 @@
     y: 447,
   };
   /**
-   * 获取数据  todo 要把搜索参数带上
+   * 获取数据 todo 要把搜索参数带上
    */
   const handleGetData = async (params: any = {}) => {
     console.log(params);
   };
 
-  const formRef = ref<any>();
-  const form = ref<any>({});
-
   const handleSubmit = ({ errors, values }: any) => {
-    console.log(values);
+    setLoading(true);
+    console.log(values, errors);
     const timer = setTimeout(() => {
+      setLoading(false);
       clearTimeout(timer);
     }, 1000);
   };
@@ -163,13 +142,12 @@
 
   // 打开modal框
   const handleClick = () => {
-    modalFormConfig.visible = true;
+    setVisible(true);
   };
 
   // 编辑表单
   const handleEdit = (row: any) => {
-    controlObj(formModel, row);
-    modalFormConfig.visible = true;
+    // controlObj(formModel, row);
   };
 
   // 禁用启用
@@ -177,8 +155,19 @@
     console.log(row);
   };
 
-  const handleReset = () => {
-    formModel.id = null;
+  const handleCancel = () => {
+    setVisible(false);
+  };
+
+  const handleOk = (callBack: any) => {
+    setLoading(true);
+    console.log(1111, editForm.value);
+    const timer = setTimeout(() => {
+      setLoading(false);
+      setVisible(false);
+      callBack();
+      clearTimeout(timer);
+    }, 1500);
   };
 
   onMounted(() => {

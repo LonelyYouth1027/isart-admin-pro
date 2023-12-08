@@ -11,6 +11,8 @@ import {
 } from 'echarts/components';
 import Chart from './chart/index.vue';
 import Breadcrumb from './breadcrumb/index.vue';
+import SearchForm from './plus/search-form/index.vue';
+import ModalForm from './plus/modal-form/index.vue';
 
 // Manually introduce ECharts modules to reduce packing size
 
@@ -27,9 +29,12 @@ use([
   GraphicComponent,
 ]);
 
+const globalComponents: any = { Chart, Breadcrumb, SearchForm, ModalForm };
+
 export default {
   install(Vue: App) {
-    Vue.component('Chart', Chart);
-    Vue.component('Breadcrumb', Breadcrumb);
+    Object.keys(globalComponents).forEach((key: any) => {
+      Vue.component(key, globalComponents[key]);
+    });
   },
 };
