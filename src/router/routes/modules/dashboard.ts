@@ -20,6 +20,7 @@ const DASHBOARD: AppRouteRecordRaw = {
         locale: 'menu.dashboard.workplace',
         requiresAuth: true,
         roles: ['*'],
+        breadcrumbInHidden: true, // 是否隐藏面包屑
       },
     },
   ],

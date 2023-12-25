@@ -1,5 +1,5 @@
 <script lang="tsx">
-  import { defineComponent, h, ref } from 'vue';
+  import { defineComponent, h, ref, watch } from 'vue';
   import { useVModels } from '@vueuse/core';
   import { proComponents } from '../config';
 
@@ -21,6 +21,13 @@
       visible: {
         type: Boolean,
         require: true,
+      },
+      extra: {
+        type: Object,
+        require: false,
+        default: () => {
+          return ref({});
+        },
       },
     },
     emits: ['cancel', 'ok'],
@@ -47,6 +54,23 @@
           }
         });
       };
+
+      watch(
+        props.extra,
+        (newVal) => {
+          if (newVal) {
+            formOptions.value = formOptions.value.map((item: any) => {
+              if (item.component === 'ASelect' && item?.optionsServer) {
+                item.props.options = newVal[item.field];
+              }
+              return item;
+            });
+          }
+        },
+        {
+          deep: true,
+        }
+      );
 
       return () => (
         <a-modal

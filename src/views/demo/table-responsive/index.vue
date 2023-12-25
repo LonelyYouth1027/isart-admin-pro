@@ -1,6 +1,5 @@
 <template>
   <div class="container">
-    <Breadcrumb :items="['menu.demo', 'menu.demo.responsive']" />
     <a-card class="general-card" :title="$t('menu.demo.responsive')">
       <template #extra>
         <a-button type="primary" @click="handleCheckout">

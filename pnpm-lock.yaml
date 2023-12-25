@@ -7,8 +7,8 @@ overrides:
 
 dependencies:
   '@arco-design/web-vue':
-    specifier: ^2.40.0
-    version: 2.40.0(vue@3.2.40)
+    specifier: ^2.53.3
+    version: 2.53.3(vue@3.2.40)
   '@vueuse/core':
     specifier: ^9.3.0
     version: 9.3.0(vue@3.2.40)
@@ -63,6 +63,9 @@ dependencies:
   vue:
     specifier: ^3.2.40
     version: 3.2.40
+  vue-color-kit:
+    specifier: ^1.0.6
+    version: 1.0.6(vue@3.2.40)
   vue-echarts:
     specifier: ^6.2.3
     version: 6.2.3(echarts@5.4.0)(vue@3.2.40)
@@ -232,8 +235,8 @@ packages:
       color: 3.2.1
     dev: false
 
-  /@arco-design/web-vue@2.40.0(vue@3.2.40):
-    resolution: {integrity: sha512-LSrljN6HQKtX44Zu5vMoxoEaSCuUhxkMkuMGt8FSFXvObooyOGAi1tQAJrl9aLJ3t2tcvPH1rgGhFgKAirWk2Q==}
+  /@arco-design/web-vue@2.53.3(vue@3.2.40):
+    resolution: {integrity: sha512-/9tMP2GrcGWPGcfRQcLMFMxRBm7s6jjFkCpXXnOpvMAIMe80+gzqjVS2dmgCv2a1FpvB9fy5ot7+evJ5zrsQiw==}
     peerDependencies:
       vue: ^3.1.0
     dependencies:
@@ -9149,6 +9152,14 @@ packages:
     optionalDependencies:
       fsevents: 2.3.3
     dev: true
+
+  /vue-color-kit@1.0.6(vue@3.2.40):
+    resolution: {integrity: sha512-56oSUp8hGIZ3E4ayZLqTDAb2C7VzaWAC1EVUsZEvPCD2wiiiFd2L2BiEGN1ingfz538sYWKNXxMZQGslqbMiBg==}
+    peerDependencies:
+      vue: ^3.0.5
+    dependencies:
+      vue: 3.2.40
+    dev: false
 
   /vue-demi@0.13.11(vue@3.2.40):
     resolution: {integrity: sha512-IR8HoEEGM65YY3ZJYAjMlKygDQn25D5ajNFNoKh9RSDMQtlzCxtfQjdQgv9jjK+m3377SsJXY8ysq8kLCZL25A==}

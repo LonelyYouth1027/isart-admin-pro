@@ -35,6 +35,12 @@
         <a-layout class="layout-content" :style="paddingStyle">
           <TabBar v-if="appStore.tabBar" />
           <a-layout-content>
+            <div
+              v-if="breadcrumbList.length && hiddenBreadcrumb"
+              style="width: 100%; padding: 0 20px 0 20px"
+            >
+              <Breadcrumb :items="breadcrumbList" />
+            </div>
             <PageLayout />
           </a-layout-content>
           <Footer v-if="footer" />
@@ -61,6 +67,12 @@
   const userStore = useUserStore();
   const router = useRouter();
   const route = useRoute();
+  const breadcrumbList = computed(() => {
+    return route.matched.map((item: any) => item.meta.locale);
+  });
+  const hiddenBreadcrumb = computed(() => {
+    return !route.meta.breadcrumbInHidden;
+  });
   const permission = usePermission();
   useResponsive(true);
   const navbarHeight = `60px`;

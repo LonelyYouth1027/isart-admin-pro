@@ -22,6 +22,13 @@
         type: Boolean,
         require: true,
       },
+      extra: {
+        type: Object,
+        require: false,
+        default: () => {
+          return {};
+        },
+      },
     },
     emits: ['reset', 'update:formOptions'],
     setup(props: any, { emit }) {
@@ -107,6 +114,23 @@
         {
           deep: true,
           // immediate: true,
+        }
+      );
+
+      watch(
+        props.extra,
+        (newVal) => {
+          if (newVal) {
+            formOptions.value = formOptions.value.map((item: any) => {
+              if (item.component === 'ASelect' && item?.optionsServer) {
+                item.props.options = newVal[item.field];
+              }
+              return item;
+            });
+          }
+        },
+        {
+          deep: true,
         }
       );
 

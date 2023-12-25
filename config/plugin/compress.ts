@@ -16,6 +16,7 @@ export default function configCompressPlugin(
     plugins.push(
       compressPlugin({
         ext: '.gz',
+        threshold: 1024 * 1000,
         deleteOriginFile,
       })
     );

@@ -1,3 +1,5 @@
+import cloneDeep from 'lodash/cloneDeep';
+
 /**
  * 合并行 (仅支持前两列)
  * @param table
@@ -47,8 +49,9 @@ const mergeTheSameRow = (table: any, columnCollections: any) => {
  */
 
 const recursionRouter = (userRouter = [], allRouter = []) => {
+  const cloneAllRouter: any = cloneDeep(allRouter);
   const realRoutes: any = [];
-  allRouter.forEach((v: any) => {
+  cloneAllRouter.forEach((v: any) => {
     userRouter.forEach((item: any) => {
       if (item.name === v.name) {
         if (item.children && item.children.length > 0) {

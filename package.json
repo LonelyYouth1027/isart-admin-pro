@@ -32,7 +32,7 @@
     ]
   },
   "dependencies": {
-    "@arco-design/web-vue": "^2.40.0",
+    "@arco-design/web-vue": "^2.53.3",
     "@vueuse/core": "^9.3.0",
     "@wangeditor/editor": "^5.1.23",
     "@wangeditor/editor-for-vue": "^5.1.12",
@@ -51,6 +51,7 @@
     "sortablejs": "^1.15.0",
     "stylelint-config-standard-vue": "^1.0.0",
     "vue": "^3.2.40",
+    "vue-color-kit": "^1.0.6",
     "vue-echarts": "^6.2.3",
     "vue-i18n": "^9.2.2",
     "vue-router": "^4.0.14"

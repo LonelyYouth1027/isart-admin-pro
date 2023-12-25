@@ -1,6 +1,6 @@
 <template>
   <div class="container">
-    <Breadcrumb :items="['menu.demo', 'menu.list']" />
+    <!--    <Breadcrumb :items="['menu.demo', 'menu.list']" />-->
     <a-card class="general-card" :title="$t('menu.list')">
       <search-form
         :model="form"
@@ -110,7 +110,7 @@
    * 获取数据 todo 要把搜索参数带上
    */
   const handleGetData = async (params: any = {}) => {
-    console.log(11111, params);
+    console.log(params);
   };
 
   const handleSubmit = ({ errors, values }: any) => {

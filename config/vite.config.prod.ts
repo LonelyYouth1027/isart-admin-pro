@@ -1,5 +1,4 @@
 import { mergeConfig } from 'vite';
-// import eslint from 'vite-plugin-eslint';
 import baseConfig from './vite.config.base';
 import configCompressPlugin from './plugin/compress';
 import configVisualizerPlugin from './plugin/visualizer';
@@ -32,23 +31,3 @@ export default mergeConfig(
   },
   baseConfig
 );
-
-// export default mergeConfig(
-//   {
-//     mode: 'production',
-//     server: {
-//       open: true,
-//       fs: {
-//         strict: true,
-//       },
-//     },
-//     plugins: [
-//       eslint({
-//         cache: false,
-//         include: ['src/**/*.ts', 'src/**/*.tsx', 'src/**/*.vue'],
-//         exclude: ['node_modules'],
-//       }),
-//     ],
-//   },
-//   baseConfig
-// );
