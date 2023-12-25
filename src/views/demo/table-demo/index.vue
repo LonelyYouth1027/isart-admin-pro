@@ -76,7 +76,6 @@
   import { ref, reactive, onMounted } from 'vue';
   import { Pagination } from '@/types/global';
   import useLoading from '@/hooks/loading';
-  import controlObj from '@/utils/control-obj';
   import useVisible from '@/hooks/visible';
   import { columns, data, formItems, modalFormItems } from './config';
 
