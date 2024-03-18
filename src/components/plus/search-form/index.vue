@@ -26,7 +26,7 @@
         type: Object,
         require: false,
         default: () => {
-          return {};
+          return ref({});
         },
       },
     },

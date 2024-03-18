@@ -40,10 +40,11 @@
        * @description 重置表单
        */
       const handleCancel = () => {
-        const timer = setTimeout(() => {
-          modalFormRef.value?.resetFields();
-          clearTimeout(timer);
-        }, 700);
+        modalFormRef.value?.resetFields();
+        // const timer = setTimeout(() => {
+        //   modalFormRef.value?.resetFields();
+        //   clearTimeout(timer);
+        // }, 700);
         emit('cancel');
       };
 
