@@ -11,8 +11,9 @@ import {
 } from 'echarts/components';
 import Chart from './chart/index.vue';
 import Breadcrumb from './breadcrumb/index.vue';
-import SearchForm from './plus/search-form/index.vue';
-import ModalForm from './plus/modal-form/index.vue';
+import ProSearchForm from './plus/search-form/index.vue';
+import ProModalForm from './plus/modal-form/index.vue';
+import ProSvgIcon from './plus/svg-icon/index.vue';
 
 // Manually introduce ECharts modules to reduce packing size
 
@@ -29,7 +30,13 @@ use([
   GraphicComponent,
 ]);
 
-const globalComponents: any = { Chart, Breadcrumb, SearchForm, ModalForm };
+const globalComponents: any = {
+  Chart,
+  Breadcrumb,
+  ProSearchForm,
+  ProModalForm,
+  ProSvgIcon,
+};
 
 export default {
   install(Vue: App) {

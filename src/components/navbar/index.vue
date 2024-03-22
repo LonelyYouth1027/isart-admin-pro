@@ -2,7 +2,7 @@
   <div class="navbar">
     <div class="left-side">
       <a-space>
-        <img :src="img" alt="logo" />
+        <pro-svg-icon name="logo" :size="32"></pro-svg-icon>
         <a-typography-title
           :style="{ margin: 0, fontSize: '18px' }"
           :heading="5"
@@ -147,7 +147,7 @@
             :size="32"
             :style="{ marginRight: '8px', cursor: 'pointer' }"
           >
-            <img alt="avatar" :src="img || avatar" />
+            <img alt="avatar" :src="avatarImg || avatar" />
           </a-avatar>
           <template #content>
             <a-doption>
@@ -190,7 +190,7 @@
 </template>
 
 <script lang="ts" setup>
-  import img from '@/assets/images/logo.png';
+  import avatarImg from '@/assets/images/avatar.png';
   import { computed, ref, inject } from 'vue';
   import { Message } from '@arco-design/web-vue';
   import { useDark, useToggle, useFullscreen } from '@vueuse/core';

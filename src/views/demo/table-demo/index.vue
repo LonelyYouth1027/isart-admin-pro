@@ -2,13 +2,13 @@
   <div class="container">
     <!--    <Breadcrumb :items="['menu.demo', 'menu.list']" />-->
     <a-card class="general-card" :title="$t('menu.list')">
-      <search-form
+      <pro-search-form
         :model="form"
         :form-options="formItems"
         :loading="loading"
         @submit="handleSubmit"
         @reset="handleGetData"
-      ></search-form>
+      ></pro-search-form>
       <a-divider style="margin-top: 0" />
       <a-row>
         <a-col :flex="1">
@@ -60,7 +60,7 @@
         </template>
       </a-table>
     </a-card>
-    <modal-form
+    <pro-modal-form
       v-model:visible="visible"
       title="新建"
       :model="editForm"
@@ -68,7 +68,7 @@
       :loading="loading"
       @cancel="handleCancel"
       @ok="handleOk"
-    ></modal-form>
+    ></pro-modal-form>
   </div>
 </template>
 

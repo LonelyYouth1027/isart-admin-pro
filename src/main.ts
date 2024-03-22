@@ -11,6 +11,8 @@ import App from './App.vue';
 import '@arco-design/web-vue/dist/arco.less';
 import '@/assets/style/global.less';
 import '@/api/interceptor';
+// eslint-disable-next-line import/no-unresolved
+import 'virtual:svg-icons-register';
 
 const app = createApp(App);
 

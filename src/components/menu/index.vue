@@ -1,11 +1,12 @@
 <script lang="tsx">
-  import { defineComponent, ref, h, compile, computed } from 'vue';
+  import { defineComponent, ref, h, computed } from 'vue';
   import { useI18n } from 'vue-i18n';
   import { useRoute, useRouter, RouteRecordRaw } from 'vue-router';
   import type { RouteMeta } from 'vue-router';
   import { useAppStore } from '@/store';
   import { listenerRouteChange } from '@/utils/route-listener';
   import { openWindow, regexUrl } from '@/utils';
+  import MenuIcon from './components/MenuIcon.vue';
   import useMenuTree from './use-menu-tree';
 
   export default defineComponent({
@@ -95,7 +96,10 @@
             _route.forEach((element) => {
               // This is demo, modify nodes as needed
               const icon = element?.meta?.icon
-                ? () => h(compile(`<${element?.meta?.icon}/>`))
+                ? () =>
+                    h(MenuIcon, {
+                      icon: element?.meta?.icon || '',
+                    })
                 : null;
               const node =
                 element?.children && element?.children.length !== 0 ? (
@@ -103,7 +107,8 @@
                     key={element?.name}
                     v-slots={{
                       icon,
-                      title: () => h(compile(t(element?.meta?.locale || ''))),
+                      title: () =>
+                        h('span', {}, t(element?.meta?.locale || '')),
                     }}
                   >
                     {travel(element?.children)}
