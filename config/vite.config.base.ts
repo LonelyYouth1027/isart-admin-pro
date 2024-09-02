@@ -43,8 +43,8 @@ export default defineConfig({
           hack: `true; @import (reference) "${resolve(
             'src/assets/style/breakpoint.less'
           )}";`,
-          // 'arcoblue-6': '#C6007E',
-          // 'arcoblue-5': '#C6007E',
+          // 'arcoblue-6': '#003291',
+          // 'arcoblue-5': '#003291',
         },
         javascriptEnabled: true,
       },

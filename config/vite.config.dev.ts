@@ -32,7 +32,7 @@ export default mergeConfig(
       }),
       AutoImport({
         // 自动导入vue相关函数，如: ref、reactive、toRef等
-        imports: ['vue', 'vue-router'],
+        imports: ['vue', 'vue-router', '@vueuse/core'],
         dts: 'src/auto-import.d.ts',
         eslintrc: {
           enabled: true,
