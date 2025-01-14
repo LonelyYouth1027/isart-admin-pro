@@ -56,6 +56,11 @@
       defaultVal: appStore.menuFromServer,
     },
     {
+      name: 'settings.menuLocal',
+      key: 'menuLocal',
+      defaultVal: appStore.menuLocal,
+    },
+    {
       name: 'settings.menuWidth',
       key: 'menuWidth',
       defaultVal: appStore.menuWidth,

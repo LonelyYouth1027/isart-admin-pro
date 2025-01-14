@@ -28,6 +28,7 @@
       });
 
       const topMenu = computed(() => appStore.topMenu);
+      const menuLocal = computed(() => appStore.menuLocal);
       const openKeys = ref<string[]>([]);
       const selectedKey = ref<string[]>([]);
 
@@ -108,7 +109,13 @@
                     v-slots={{
                       icon,
                       title: () =>
-                        h('span', {}, t(element?.meta?.locale || '')),
+                        h(
+                          'span',
+                          {},
+                          menuLocal.value
+                            ? t(element?.meta?.locale || '')
+                            : element?.meta?.locale
+                        ),
                     }}
                   >
                     {travel(element?.children)}
@@ -119,7 +126,9 @@
                     v-slots={{ icon }}
                     onClick={() => goto(element)}
                   >
-                    {t(element?.meta?.locale || '')}
+                    {menuLocal.value
+                      ? t(element?.meta?.locale || '')
+                      : element?.meta?.locale}
                   </a-menu-item>
                 );
               nodes.push(node as never);

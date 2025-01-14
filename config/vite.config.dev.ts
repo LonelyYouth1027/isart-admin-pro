@@ -18,6 +18,9 @@ export default mergeConfig(
       },
       host: '0.0.0.0',
     },
+    build: {
+      sourcemap: false, // 关闭 Source Maps
+    },
     plugins: [
       eslint({
         cache: false,
